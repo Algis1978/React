@@ -1,22 +1,8 @@
 import logo from './logo.svg';
 import './App.scss';
-import Box from "./components/Box.jsx"
 import Apskritimas from "./components/Apskritimai"
 import Simple from "./components/simple.jsx"
 
-const data = [ 
-  {
-  boxColor: 'green',
-  boxNumber: 34,
-  ls: "1px"
-},
-  {
-  boxColor: 'yellow',
-  boxNumber: 12,
-  ls: "4px"
-}
-  
-  ]
 //Apskritimų objektų generavimo algoritmas:
 let hexKodas = function() {
   let skaiciai = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, "a", "b", "c", "d", "e", "f"];
@@ -52,12 +38,6 @@ const apskritimai = apskritimuSkaicius(8)
 function App() {
   return (
 <>
-{/* <Box/>
-<Box boxcolor={'darkorange'} boxNumber={1}/>
-<Box boxcolor={'black'} boxNumber={2}/> */}
-{/* <Apskritimas/> */}
-{Simple}
-{data.map( (box, index) => <Box key={index} boxColor={box.boxColor} ls={box.ls} boxNumber={box.boxNumber}/>)}
 {apskritimai.map( (apskritimas, index) => <Apskritimas key={index} circleColor={apskritimas.circleColor} circleBorder={apskritimas.circleBorder} circleNumber={apskritimas.circleNumber}/>)}
 </>
   );
