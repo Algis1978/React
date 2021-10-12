@@ -1,7 +1,5 @@
-import logo from './logo.svg';
 import './App.scss';
 import Apskritimas from "./components/Apskritimai"
-import Simple from "./components/simple.jsx"
 
 //Apskritimų objektų generavimo algoritmas:
 let hexKodas = function() {
