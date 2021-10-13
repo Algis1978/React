@@ -1,7 +1,7 @@
 import Apskritimas from "./components/Apskritimai"
 import apskritimuSkaicius from "./functions/apskritimuGeneratorius"
 
-const apskritimai = apskritimuSkaicius(8)
+const apskritimai = apskritimuSkaicius(10)
 
 //Funkcija App
 function App() {

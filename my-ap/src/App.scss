@@ -10,18 +10,25 @@
     font-size: 32px;
   }
 }
-.circle {
-  display:inline-block;
-  background-color: cornflowerblue;
-  border-radius: 50%;
-  width: 15vw;
-  height: 15vw;
-  span{
-    font-size:2rem;
-    background-color: rgb(40, 52, 72);
-    line-height: 15vw;
-    padding-left:3vw;
-    border-radius: 12px;
-    color: azure;
+.circleGrid {
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
+  .circle {
+    display:inline-block;
+    box-sizing: border-box;
+    background-color: cornflowerblue;
+    border-radius: 50%;
+    width: 15vw;
+    height: 15vw;
+    span{
+      font-size:2rem;
+      background-color: rgb(40, 52, 72);
+      line-height: 15vw;
+      padding-left:3vw;
+      border-radius: 12px;
+      color: azure;
+    }
   }
 }
