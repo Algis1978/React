@@ -22,3 +22,22 @@ body {
   background-color: rgb(193, 20, 20);
   margin:10px;
 }
+main {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 40px;
+  width:60vw;
+  height:60vw;
+  margin:20vw;
+  .mygtukas {
+    width:20vw;
+    height:10vw;
+    font-size:3rem;
+    color: white;
+    background-color: teal;
+    border: 12px double yellowgreen;
+    border-radius: 12px;
+    box-shadow: 6px 6px 2px 3px rgb(241, 241, 168);
+  }
+}
