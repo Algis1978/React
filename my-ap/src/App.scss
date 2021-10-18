@@ -1,7 +1,7 @@
 body {
-  width:100vw;
-  height:100vh;
-  background-image: repeating-linear-gradient(45deg, rgb(184, 121, 121), rgb(238, 209, 209));
+  min-width: 100vw;
+  min-width: 100vh;
+  background-color: rgb(236, 215, 218) ;
 }
 .blackBox {
   width: 320px;
