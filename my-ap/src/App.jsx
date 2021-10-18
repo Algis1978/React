@@ -7,12 +7,11 @@ const skrituliai = skrituliuSkaicius(10)
 //Funkcija App
 function App() {
   return (
-<>
-<Banner/>
-<div className="container">
-{skrituliai.map( (skritulys, index) => <Skritulys key={index} circleColor={skritulys.circleColor} circleBorder={skritulys.circleBorder} circleNumber={skritulys.circleNumber}/>)}
-</div>
-</>
+    <>
+      <Banner/>
+
+      {skrituliai.map( (skritulys, index) => <Skritulys key={index} circleColor={skritulys.circleColor} circleBorder={skritulys.circleBorder} circleNumber={skritulys.circleNumber}/>)}
+    </>
   );
 }
 

@@ -15,14 +15,6 @@ let borderStyle = function() {
   h = stiliai[j];
   return h
 }
-let topPosition = function() {
-  let j = Math.round( Math.random()*85 ) + "px" 
-  return "j"
-}
-let leftPosition = function() {
-  let j = Math.round( Math.random()*90 ) + "px" 
-  return "j"
-}
 
 function skrituliuSkaicius (k) {
   let skrituliuMasyvas = [];

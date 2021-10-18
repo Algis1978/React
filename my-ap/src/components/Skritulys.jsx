@@ -8,6 +8,5 @@ function Skritulys ({circleColor, circleBorder, circleNumber}) {
     )
 }
 
-
 //Export sekcija:
 export default Skritulys
