@@ -16,20 +16,28 @@
   grid-template-rows: auto;
   background-color: whitesmoke;
 
-  .circle {
-    display:inline-block;
-    box-sizing: border-box;
-    background-color: cornflowerblue;
-    border-radius: 50%;
-    width: 15vw;
-    height: 15vw;
-    span{
-      font-size:2rem;
-      background-color: rgb(40, 52, 72);
-      line-height: 15vw;
-      padding-left:3vw;
-      border-radius: 12px;
-      color: azure;
-    }
+}
+.circle {
+  display:inline-block;
+  box-sizing: border-box;
+  background-color: cornflowerblue;
+  border-radius: 50%;
+  width: 15vw;
+  height: 15vw;
+  span{
+    font-size:2rem;
+    background-color: rgb(40, 52, 72);
+    line-height: 15vw;
+    padding-left:3vw;
+    border-radius: 12px;
+    color: azure;
   }
+}
+
+.banner {
+  height: 10vh;
+  width:100vw;
+  position: fixed;
+  top: 0;
+  background-image: linear-gradient(90deg black white);
 }
