@@ -12,16 +12,77 @@ body {
   height: 150px;
   background-color: darkcyan;
   margin: 10px;
+
 }
-.apskritimas {
-  display: flex;
+.div {
+  display: inline-flex;
+  .apskritimas {
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: rgb(193, 20, 20);
+  border: 6px double brown;
   margin: 10px;
+  background-color: azure;
+  .apskrNr {
+    font-size: 2rem;
+    color: azure;
+    background-color: rgb(66, 64, 74);
+    padding: 0px 12px 0px 12px;
+    border-radius: 12px;
+  }
+}
+.mygtukas {
+  font-size: 1.5rem;
+  background-image: linear-gradient(
+    90deg,
+    rgb(243, 171, 36),
+    rgb(247, 207, 133)
+  );
+  padding: 16px;
+  border: 4px double rgb(253, 210, 194);
+  border-radius: 16px;
+  animation-name: mygtukas;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
+  margin: 8px;
+}
+@keyframes mygtukas {
+  0% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+  80% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+  50% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(260, 190, 80),
+      rgb(230, 220, 90)
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+}
+.mygtukas:hover {
+  cursor: grab;
+}
 }
 main {
   display: grid;

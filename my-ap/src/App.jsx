@@ -1,11 +1,10 @@
-import Skritulys from "./components/Skritulys"
+import Apskritimas from "./components/Apskritimas"
 
 //Funkcija App
 function App() {
   return (
       <>
-    <h1>Go Away!!!</h1>
-    <Skritulys spalva={'azure'}/>
+    <Apskritimas color1={'azure'} color2={'yellow'}/>
   </>
   )
 }
