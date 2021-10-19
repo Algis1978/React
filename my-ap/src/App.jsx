@@ -1,5 +1,5 @@
 import {useState} from "react"
-import buttonColorChanger from"./components/buttonColorChanger"
+import ButtonColorChanger from"./components/ButtonColorChanger"
 //Funkcija App
 function App() {
 
@@ -11,7 +11,7 @@ function App() {
   return (
   <>
    <div className="kvadratas" >
-     <buttonColorChanger colorCh={changeBackground}></buttonColorChanger>
+     <ButtonColorChanger colorCh={changeBackground}></ButtonColorChanger>
    </div>
   </>
   )
