@@ -19,7 +19,7 @@ function App() {
       <>
     <Apskritimas12 color1={'azure'} color2={'yellow'} skaicius1={skaicius1} skaicius2={skaicius2}/>
     <button className="mygtukas" onClick={addNumber1}>Per vieną</button>
-    <button className="mygtukas" onClick={addNumber2}>Per du</button>
+    <button className="mygtukas2" onClick={addNumber2}>Per du</button>
     <button className="mygtukas3" onClick={addNumber0}>Nunulinti</button>
   </>
   )

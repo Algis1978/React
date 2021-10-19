@@ -411,3 +411,53 @@ main {
 .mygtukas3:hover {
   cursor: grab;
 }
+.mygtukas2 {
+  font-size: 1.5rem;
+  background-image: linear-gradient(
+    90deg,
+    rgb(243, 171, 36),
+    rgb(247, 207, 133)
+  );
+  padding: 16px;
+  border: 4px double rgb(253, 210, 194);
+  border-radius: 16px;
+  animation-name: mygtukas;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 2500ms;
+  box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
+  margin: 8px;
+}
+@keyframes mygtukas2 {
+  0% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+  80% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+  50% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(260, 190, 80),
+      rgb(230, 220, 90)
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+  }
+}
+.mygtukas2:hover {
+  cursor: grab;
+}
