@@ -8,12 +8,12 @@ export default function Apskritimas12( props ) {
       <>
       <div className="div">
         <div className="apskritimas" style ={{backgroundColor:props.color1}}>
-        <div className="apskrNr">{skaicius1}</div>
+        <div className="apskrNr">{props.skaicius1}</div>
         </div>
       </div>
       <div className="div">
         <div className="apskritimas" style ={{backgroundColor:props.color2}}>
-        <div className="apskrNr">{skaicius2}</div>
+        <div className="apskrNr">{props.skaicius2}</div>
         </div>   
       </div>
         
