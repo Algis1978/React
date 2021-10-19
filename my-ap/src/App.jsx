@@ -2,6 +2,7 @@ import {useState} from "react"
 import TextInput from "./components/TextInput"
 import SelectInput from "./components/SelectInput"
 import CheckBoxInput from "./components/CheckBoxInput"
+import Kvadratas from "./components/Kvadratas"
 
 //Funkcija App
 function App() {
@@ -16,6 +17,7 @@ function App() {
    <TextInput/>
    <SelectInput/>
    <CheckBoxInput/>
+   <Kvadratas/>
   </>
   )
 }
