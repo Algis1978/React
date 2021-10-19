@@ -4,6 +4,9 @@ import SelectInput from "./components/SelectInput"
 import CheckBoxInput from "./components/CheckBoxInput"
 import Kvadratas from "./components/Kvadratas"
 import Mygtukas from "./components/Mygtukas"
+import Apskritimas from "./components/Apskritimas"
+import VertikaliLinija from "./components/VertikaliLinija"
+import HorizontaliLinija from "./components/HorizontaliLinija"
 
 //Funkcija App
 function App() {
@@ -15,10 +18,17 @@ function App() {
   }
   return (
   <>
-   <TextInput/>
+  <div className="div">
    <TextInput/>
    <SelectInput/>
-   <Mygtukas/>
+   <Mygtukas tekstas="Patvirtinti"/>
+   </div>
+  <div className="div2">
+   <Apskritimas/>
+   <Kvadratas/>
+   <HorizontaliLinija/>
+   <VertikaliLinija/>
+   </div>
   </>
   )
 }

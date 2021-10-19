@@ -1,12 +1,10 @@
-function Apskritimas ({spalva}, {tekstas}) {
+export default function Apskritimas ({spalva}) {
     return (
     <>
     <div className="apskritimas" style={{backgroundColor:spalva}}>
-        <button>{tekstas}</button>
     </div>
     </>
   )
 }
 
-export default Apskritimas
 

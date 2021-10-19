@@ -11,9 +11,12 @@ export default function TextInput () {
 
     return (
         <>
-        <div className="div">
-        <input onChange={change}  type="text" value={value}></input>
-        </div>
+    
+        <h2>Pasirinkite figūrų spalvą:</h2>
+        <input onChange={change}  type="color" value={value}></input>
+        <h2>Pasirinkite figūrų skaičių:</h2>
+        <input onChange={change}  type="number" value={value}></input>
+    
         </>
     )
 }

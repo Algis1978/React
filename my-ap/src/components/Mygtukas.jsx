@@ -1,6 +1,6 @@
 function Mygtukas({tekstas}) {
     return (
-          <button className="mygtukas" type="submit">{tekstas}</button>
+          <button className="mygtukas4" type="submit">{tekstas}</button>
     )
   }
   

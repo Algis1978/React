@@ -11,15 +11,14 @@ export default function SelectInput () {
 
     return (
         <>
-        <div className="div">
             <h2>Pasirinkite figūrą:</h2>
         <select onChange={change} value={value}>
+        <option value="" disabled selected>Pasirinkite:</option>
             <option value={1}>Skritulys</option>
             <option value={2}>Kvadratas</option>
             <option value={3}>Horizontali linija</option>
             <option value={3}>Vertikali linija</option>
         </select>
-        </div>
         </>
     )
 }
