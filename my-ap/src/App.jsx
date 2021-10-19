@@ -1,10 +1,11 @@
-import Clock from "./components/Clock"
-import Main from "./components/Main"
+import Skritulys from "./components/Skritulys"
+
 //Funkcija App
 function App() {
   return (
       <>
-    <Clock clockTime={new Date().toLocaleTimeString()}/>
+    <h1>Go Away!!!</h1>
+    <Skritulys spalva={'azure'}/>
   </>
   )
 }

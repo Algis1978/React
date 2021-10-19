@@ -1,5 +1,6 @@
 body {
-  display:flex;
+  display: flex;
+  transition: 0.1s;
   // justify-content: center;
   // align-items: center;
 }
@@ -7,37 +8,246 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:150px;
-  height:150px;
+  width: 150px;
+  height: 150px;
   background-color: darkcyan;
-  margin:10px;
+  margin: 10px;
 }
 .apskritimas {
   display: flex;
   justify-content: center;
   align-items: center;
-  width:150px;
-  height:150px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   background-color: rgb(193, 20, 20);
-  margin:10px;
+  margin: 10px;
 }
 main {
-  display:grid;
+  display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 40px;
-  width:60vw;
-  height:60vw;
-  margin:20vw;
+  width: 60vw;
+  height: 60vw;
+  margin: 20vw;
   .mygtukas {
-    width:20vw;
-    height:10vw;
-    font-size:3rem;
+    width: 20vw;
+    height: 10vw;
+    font-size: 3rem;
     color: white;
     background-color: teal;
     border: 12px double yellowgreen;
     border-radius: 12px;
     box-shadow: 6px 6px 2px 3px rgb(241, 241, 168);
   }
+}
+
+.skritulys {
+  width: 40vw;
+  height: fit-content;
+  background-image: linear-gradient(135deg, rgb(51, 49, 45), rgb(221, 184, 35));
+  padding: 12px;
+  .skaiciuokle {
+    width: fit-content;
+    padding: 0px 24px 0px 24px;
+    background-color: cadetblue;
+    font-size: 3rem;
+    text-shadow: none;
+    border: 8px double rgb(245, 224, 201);
+    border-radius: 12px;
+    margin: 16px;
+    box-shadow: 4px 6px 4px 0px rgba(199, 204, 204, 0.7);
+    transform: rotate(-15deg);
+    animation-name: skaiciuokle;
+    animation-duration: 3000ms;
+    animation-iteration-count: infinite;
+  }
+  @keyframes skaiciuokle {
+    0% {
+      background-color: cadetblue;
+      text-shadow: none;
+    }
+    90% {
+      background-color: cadetblue;
+      text-shadow: none;
+    }
+    95% {
+      background-color: rgb(173, 229, 232);
+      text-shadow: 2px 2px 4px 0px rgb(12, 12, 12);
+    }
+    100% {
+      background-color: cadetblue;
+      text-shadow: none;
+    }
+  }
+  .mygtukas {
+    font-size: 1.5rem;
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+    padding: 16px;
+    border: 4px double rgb(253, 210, 194);
+    border-radius: 16px;
+    animation-name: mygtukas;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
+    margin: 8px;
+  }
+  @keyframes mygtukas {
+    0% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+    80% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+    50% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(260, 190, 80),
+        rgb(230, 220, 90)
+      );
+    }
+    100% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+  }
+  .mygtukas:hover {
+    cursor: grab;
+  }
+  .mygtukas2 {
+    font-size: 1.5rem;
+    background-image: linear-gradient(
+      90deg,
+      rgb(243, 171, 36),
+      rgb(247, 207, 133)
+    );
+    padding: 16px;
+    border: 4px double rgb(253, 210, 194);
+    border-radius: 16px;
+    animation-name: mygtukas;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 2500ms;
+    box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
+    margin: 8px;
+  }
+  @keyframes mygtukas2 {
+    0% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+    80% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+    50% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(260, 190, 80),
+        rgb(230, 220, 90)
+      );
+    }
+    100% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(243, 171, 36),
+        rgb(247, 207, 133)
+      );
+    }
+  }
+  .mygtukas2:hover {
+    cursor: grab;
+  }
+  .mygtukas3 {
+    font-size: 1.5rem;
+    background-image: linear-gradient(
+      90deg,
+      rgb(114, 200, 202),
+      rgb(165, 224, 225)
+    );
+    padding: 16px;
+    border: 4px double rgb(253, 210, 194);
+    border-radius: 16px;
+    animation-name: mygtukas3;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-delay: 2500ms;
+    box-shadow: 6px 8px 6px 0px rgba(175, 214, 228, 0.494);
+    margin: 8px;
+  }
+  @keyframes mygtukas3 {
+    0% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(114, 200, 202),
+        rgb(165, 224, 225)
+      );
+    }
+    80% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(114, 200, 202),
+        rgb(165, 224, 225)
+      );
+    }
+    50% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(93, 167, 169),
+        rgb(78, 208, 208)
+      );
+    }
+    100% {
+      background-image: linear-gradient(
+        90deg,
+        rgb(114, 200, 202),
+        rgb(165, 224, 225)
+      );
+    }
+  }
+  .mygtukas3:hover {
+    cursor: grab;
+  }
+}
+.mygtukas4 {
+  font-size: 1.5rem;
+  background-image: linear-gradient(
+    90deg,
+    rgb(243, 171, 36),
+    rgb(247, 207, 133)
+  );
+  padding: 16px;
+  border: 4px double rgb(253, 210, 194);
+  border-radius: 16px;
+  animation-name: mygtukas;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 2500ms;
+  box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
+  margin: 8px;
+}
+.mygtukas4:hover {
+  cursor: grab;
 }

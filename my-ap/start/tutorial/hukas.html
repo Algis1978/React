@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hukas</title>
+</head>
+<body>
+    <h1>Hukas</h1>
+    <p>Hukas - kodas, kuris leidžia keisti steitus iš funkcijos vidaus nenaudojant klasių. 'component did mount()' pasileisdavo paruošus komponentą. Su huku galima paruošti vieną funkciją darbui.</p>
+    <p>Susikuriame komponento funkciją 'Apskritimas' su klase ir sukuriame jo css aprašą. Po to įterpiame į jį propsą 'spalva'. Propsas pažymimas kaip funkcijos argumentas, nurodoma jo vieta komponento aprašyme ir nurodoma jo vertė App.jsx byloje</p>
+    <p>Į 'Skritulys' įvedame div'ą '.skaiciuokle' su numerio pozicija, šiam atvejui su skačiumi 0.</p>
+    <p>Į 'Skritulys' komponentą pridedame mygtuką. Jam priskiriame 'onClick' įvykį, funkciją 'addNumber'. EventList'o React'e nėra, viską perima funkcijos. Aukščiau funkcijos kūne sukuriama funkcija 'addNumber'.</p>
+    <p>Aukščiau importuojama 'useState' funkcija: "import { useState } from "react";". Ši 'useState' funkcija grąžina dviejų elementų masyvą.</p>
+    <p>Aka 'hukas' užrašomas masyvo pavidalu: const [counter, setCounter], kuriame 'counter' yra steitas, 'setCountert' - steito keitimo funkcija.</p>
+    <p>Hukui priskiriama importuota 'useState' funkcija: const [counter, setCounter] = useState (0). kur 0 yra pradinis steitas, kuris padedamas į steito 'counter' vietą.</p>
+    <p>Tuomet 'counter' kintamąjį galima priskirti '.skaiciuokle' teksto numeriui. Keičiant pradinį argumentą 'useState' funkcijoje keisis ir 'counter' reikšmė.</p>
+    <p>Funkcijoje 'addNumber' sukuriamas naujas kintamasis, kuriam priskiriamas 'counter' keitimo veiksmas.</p>
+    <p>Tuomet funkcijoje 'addNumber' aktyvuojamas steitas 'setCounter', kurio argumentui priskiriamas kintamasis (ar 'counter' keitimo veiksmas): setCounter(kint.).</p>
+</body>
+</html>
