@@ -1,5 +1,8 @@
 import {useState} from "react"
-import buttonColorChanger from"./components/buttonColorChanger"
+import TextInput from "./components/TextInput"
+import SelectInput from "./components/SelectInput"
+import CheckBoxInput from "./components/CheckBoxInput"
+
 //Funkcija App
 function App() {
 
@@ -10,9 +13,9 @@ function App() {
   }
   return (
   <>
-   <div className="kvadratas" >
-     <buttonColorChanger colorCh={changeBackground}></buttonColorChanger>
-   </div>
+   <TextInput/>
+   <SelectInput/>
+   <CheckBoxInput/>
   </>
   )
 }
