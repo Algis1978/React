@@ -3,6 +3,7 @@ import TextInput from "./components/TextInput"
 import SelectInput from "./components/SelectInput"
 import CheckBoxInput from "./components/CheckBoxInput"
 import Kvadratas from "./components/Kvadratas"
+import Mygtukas from "./components/Mygtukas"
 
 //Funkcija App
 function App() {
@@ -15,11 +16,13 @@ function App() {
   return (
   <>
    <TextInput/>
+   <TextInput/>
    <SelectInput/>
-   <CheckBoxInput/>
-   <Kvadratas/>
+   <Mygtukas/>
   </>
   )
 }
 
 export default App;
+
+// Reikia padaryti du text inputus (vienas gali būti color), vieną selektą ir mygtuka. Į vieną text inputą rašoma spalva, o į kitą skaičius, selekte pasirenkama forma (circle, square, vertical line, horizontal line) o paspaudus mygtuką pasirodo tokios spalvos ir formos figūros. Figūrų kiekis priklauso nuo skaičiaus inputo
