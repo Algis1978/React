@@ -6,7 +6,7 @@ export default function SelectInput () {
     const change = (e) => {
         console.log(e.target.value)
 
-        setValue(e.target.value+"jjh")
+        setValue(e.target.value)
     }
 
     return (
