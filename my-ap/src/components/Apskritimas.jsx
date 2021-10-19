@@ -30,7 +30,7 @@ export default function Apskritimas1( props ) {
         </div>
         <button className="mygtukas" onClick={addNumber2}>Per du</button>
       </div>
-        <button className="mygtukas4" onClick={addNumber0}>Nunulinti</button>
+        <button className="mygtukas3" onClick={addNumber0}>Nunulinti</button>
       </>
     )
 }

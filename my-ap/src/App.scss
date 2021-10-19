@@ -241,56 +241,6 @@ main {
   .mygtukas2:hover {
     cursor: grab;
   }
-  .mygtukas3 {
-    font-size: 1.5rem;
-    background-image: linear-gradient(
-      90deg,
-      rgb(114, 200, 202),
-      rgb(165, 224, 225)
-    );
-    padding: 16px;
-    border: 4px double rgb(253, 210, 194);
-    border-radius: 16px;
-    animation-name: mygtukas3;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 2500ms;
-    box-shadow: 6px 8px 6px 0px rgba(175, 214, 228, 0.494);
-    margin: 8px;
-  }
-  @keyframes mygtukas3 {
-    0% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-    80% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-    50% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(93, 167, 169),
-        rgb(78, 208, 208)
-      );
-    }
-    100% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-  }
-  .mygtukas3:hover {
-    cursor: grab;
-  }
 }
 .mygtukas4 {
   font-size: 1.5rem;
@@ -310,5 +260,55 @@ main {
   margin: 8px;
 }
 .mygtukas4:hover {
+  cursor: grab;
+}
+.mygtukas3 {
+  font-size: 1.5rem;
+  background-image: linear-gradient(
+    90deg,
+    rgb(114, 200, 202),
+    rgb(165, 224, 225)
+  );
+  padding: 16px;
+  border: 4px double rgb(253, 210, 194);
+  border-radius: 16px;
+  animation-name: mygtukas3;
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-delay: 2500ms;
+  box-shadow: 6px 8px 6px 0px rgba(175, 214, 228, 0.494);
+  margin: 8px;
+}
+@keyframes mygtukas3 {
+  0% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(114, 200, 202),
+      rgb(165, 224, 225)
+    );
+  }
+  80% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(114, 200, 202),
+      rgb(165, 224, 225)
+    );
+  }
+  50% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(93, 167, 169),
+      rgb(78, 208, 208)
+    );
+  }
+  100% {
+    background-image: linear-gradient(
+      90deg,
+      rgb(114, 200, 202),
+      rgb(165, 224, 225)
+    );
+  }
+}
+.mygtukas3:hover {
   cursor: grab;
 }
