@@ -1,3 +1,8 @@
+body {
+  min-width: 100vw;
+  min-width: 100vh;
+  background-color: rgb(236, 215, 218) ;
+}
 .blackBox {
   width: 320px;
   height: fit-content;
@@ -16,20 +21,32 @@
   grid-template-rows: auto;
   background-color: whitesmoke;
 
+}
   .circle {
-    display:inline-block;
+    display: inline-flex;
     box-sizing: border-box;
     background-color: cornflowerblue;
     border-radius: 50%;
-    width: 15vw;
-    height: 15vw;
-    span{
-      font-size:2rem;
+    min-width: 120px;
+    min-height:120px;
+    width: 10vw;
+    height: 10vw;
+    justify-content: center;
+    align-items: center;
+    div{
+      font-size:1.5rem;
       background-color: rgb(40, 52, 72);
-      line-height: 15vw;
-      padding-left:3vw;
+      padding:2px 12px 2px 12px;
       border-radius: 12px;
       color: azure;
     }
   }
+
+.banner {
+  height: 16%;
+  width:100%;
+  background-image: linear-gradient(0deg, rgb(105, 4, 4), white);
+  display:absolute;
+  position: fixed;
+  bottom:0;
 }

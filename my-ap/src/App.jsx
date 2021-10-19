@@ -1,14 +1,17 @@
-import Apskritimas from "./components/Apskritimai"
-import apskritimuSkaicius from "./functions/apskritimuGeneratorius"
+import Skritulys from "./components/Skritulys"
+import trinamasSkritulys from "./components/trinamasSkritulys"
+import skrituliuSkaicius from "./functions/skrituliuGeneratorius"
 
-const apskritimai = apskritimuSkaicius(10)
+const skrituliai = skrituliuSkaicius(10)
+const skrituliai2 = skrituliuSkaicius(10)
 
 //Funkcija App
 function App() {
   return (
-<>
-{apskritimai.map( (apskritimas, index) => <Apskritimas key={index} circleColor={apskritimas.circleColor} circleBorder={apskritimas.circleBorder} circleNumber={apskritimas.circleNumber}/>)}
-</>
+    <>
+      {skrituliai.map( (skritulys, index) => <Skritulys key={index} circleColor={skritulys.circleColor} circleBorder={skritulys.circleBorder} circleNumber={skritulys.circleNumber}/>)}
+      {skrituliai2.map( (skritulys, index) => <trinamasSkritulys key={index} circleColor={skritulys.circleColor} circleBorder={skritulys.circleBorder} circleNumber={skritulys.circleNumber}/>)}
+    </>
   );
 }
 

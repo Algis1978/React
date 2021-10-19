@@ -15,16 +15,19 @@ let borderStyle = function() {
   h = stiliai[j];
   return h
 }
-function apskritimuSkaicius (k) {
-  let apskritimuMasyvas = [];
+
+function skrituliuSkaicius (k) {
+  let skrituliuMasyvas = [];
   for (let i = 1; i<=k; i++) {
-    apskritimuMasyvas.push(
+    skrituliuMasyvas.push(
     {
     circleColor: hexKodas(), 
     circleBorder: "6px "+borderStyle()+" "+hexKodas(),
     circleNumber:  i
+
     })
   }
-  return apskritimuMasyvas
+  
+  return skrituliuMasyvas
 }  
-export default apskritimuSkaicius;
+export default skrituliuSkaicius;
