@@ -7,32 +7,27 @@ import Mygtukas from "./components/Mygtukas"
 import Apskritimas from "./components/Apskritimas"
 import VertikaliLinija from "./components/VertikaliLinija"
 import HorizontaliLinija from "./components/HorizontaliLinija"
+import Forma from "./components/Forma"
+import Turinys from "./components/Turinys"
 
 //Funkcija App
-function App() {
+export default function App() {
 
-  const [background, setBackground] = useState('cornsilk');
+  const [turinys, setTurinys] = useState( {spalva:"", figura:"", skaicius:[]})
 
-  const changeBackground = () => {
-    setBackground("#"+Math.floor(Math.random()*16777215).toString(16))
+  const turinysOn = (data) => {
+      data.skaicius = new Array(parseInt (data.skaicius)).fill(null)
+      setTurinys(data)
   }
+
   return (
   <>
-  <div className="div">
-   <TextInput/>
-   <SelectInput/>
-   <Mygtukas tekstas="Patvirtinti"/>
-   </div>
-  <div className="div2">
-   <Apskritimas/>
-   <Kvadratas/>
-   <HorizontaliLinija/>
-   <VertikaliLinija/>
+  <div className="zona">
+    <Forma turinys={turinys}/>
+    <Turinys turinysOn={turinysOn}/>
    </div>
   </>
   )
 }
-
-export default App;
 
 // Reikia padaryti du text inputus (vienas gali būti color), vieną selektą ir mygtuka. Į vieną text inputą rašoma spalva, o į kitą skaičius, selekte pasirenkama forma (circle, square, vertical line, horizontal line) o paspaudus mygtuką pasirodo tokios spalvos ir formos figūros. Figūrų kiekis priklauso nuo skaičiaus inputo
