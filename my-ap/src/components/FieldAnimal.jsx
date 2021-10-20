@@ -1,26 +1,22 @@
+function FieldAnimal({ fieldAnimal }) {
 
-export default FieldAnimal ( {fieldAnimal}) {
 
     if ('cow' === fieldAnimal.animal) {
         return (
             <div className="cow">
-
             </div>
-        )
+        );
     }
     else if ('sheep' === fieldAnimal.animal) {
         return (
             <div className="sheep">
-
             </div>
-        )
+        );
     }
-    else if ('chicken' === fieldAnimal.animal) {
-        return (
-            <div className="chicken">
+    else {
+        return null;
+    }
 
-            </div>
-        )
-    }
-    else {return null}
 }
+
+export default FieldAnimal;
