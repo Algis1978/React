@@ -1,25 +1,35 @@
-import {useState} from "react"
-import TextInput from "./components/TextInput"
-import SelectInput from "./components/SelectInput"
-import CheckBoxInput from "./components/CheckBoxInput"
-import Kvadratas from "./components/Kvadratas"
+import { useEffect, useState } from "react"
 
-//Funkcija App
-function App() {
+export default function App() {
+  //useEffect hukas iš react leidžia paleisti paruoštą komponntą.
+  //localStorage priklauso narsykles JS
 
-  const [background, setBackground] = useState('cornsilk');
-
-  const changeBackground = () => {
-    setBackground("#"+Math.floor(Math.random()*16777215).toString(16))
+  const [field, setfield] = useState([])
+  // Į masyvą fieldCopy pridedma daug objektų animal:what.
+  const add = (what) => {
+    const fieldCopy = field.slice();
+    fieldCopy.push({animal:what})
+    setfield(fieldCopy)
+    console.log(fieldCopy)
   }
+  //jei įrašomas tuščias masyvas [] tai callback funkcija pasleidžia vieną kartą, kai atvaizduojamas paruoštas komponentas.
+  useEffect(()=> {
+    console.log("atvaizduota")
+  }, [])
+
   return (
   <>
-   <TextInput/>
-   <SelectInput/>
-   <CheckBoxInput/>
-   <Kvadratas/>
+  <div className="field">
+   <div>
+      {field.map((fieldAnimal) =>{})}
+   </div>
+   <button className="mygtukas" onClick= {() => add("cow")}>Pridėti karvę</button>
+   <button className="mygtukas" onClick= {() => add("sheep")}>Pridėti avį</button>
+   <button className="mygtukas" onClick= {() => add("chicken")}>Pridėti vištą</button>
+   </div>
   </>
   )
 }
 
-export default App;
+
+
