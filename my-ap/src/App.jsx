@@ -22,8 +22,9 @@ function App() {
         <div>
           {field.map((fieldAnimal, i)=><FieldAnimal key={i} fieldAnimal={fieldAnimal}></FieldAnimal>)}
         </div>
-        <button onClick={() => add('cow')}>Add cow</button>
-        <button onClick={() => add('sheep')}>Add sheep</button>
+        <button className = "mygtukas4"  onClick={() => add('cow')}>Pridėti karvę</button>
+        <button className = "mygtukas4" onClick={() => add('sheep')}>Pridėti avį</button>
+        <button className = "mygtukas4" onClick={() => add('chicken')}>Pridėti vištą</button>
         </div>
     );
 

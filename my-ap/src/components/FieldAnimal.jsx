@@ -13,6 +13,12 @@ function FieldAnimal({ fieldAnimal }) {
             </div>
         );
     }
+    else if ('chicken' === fieldAnimal.animal) {
+        return (
+            <div className="chicken">
+            </div>
+        );
+    }
     else {
         return null;
     }
