@@ -1,20 +1,19 @@
 import {useState} from "react"
 import ButtonColorChanger from"./components/ButtonColorChanger"
 //Funkcija App
-function App() {
+export default function App() {
 
   const [background, setBackground] = useState('cornsilk');
 
-  const changeBackground = () => {
-    setBackground("#"+Math.floor(Math.random()*16777215).toString(16))
+  const changeBackground = (color) => {
+    setBackground(color)
   }
   return (
   <>
-   <div className="kvadratas" >
+   <div className="kvadratas" style={{backgroundColor:background}} >
      <ButtonColorChanger colorCh={changeBackground}></ButtonColorChanger>
    </div>
   </>
   )
 }
 
-export default App;
