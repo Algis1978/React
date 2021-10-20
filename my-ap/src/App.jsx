@@ -13,9 +13,9 @@ export default function App() {
     console.log(fieldCopy)
   }
   //jei įrašomas tuščias masyvas [] tai callback funkcija pasleidžia vieną kartą, kai atvaizduojamas paruoštas komponentas.
-  useEffect(()=> {
-    console.log("atvaizduota")
-  }, [])
+  // useEffect(()=> {
+  //   console.log("atvaizduota")
+  // }, [])
 
   return (
   <>
