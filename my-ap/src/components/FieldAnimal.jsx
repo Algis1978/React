@@ -1,21 +1,24 @@
-function FieldAnimal({ fieldAnimal }) {
+function FieldAnimal({ fieldAnimal, field, trinti}) {
 
 
-    if ('cow' === fieldAnimal.animal) {
+    if (field === fieldAnimal.field&&'cow' === fieldAnimal.animal) {
         return (
-            <div className="cow">
+            <div className="cow" onClick={()=> trinti(fieldAnimal.id)}>
+                <div className="number" >{fieldAnimal.id}</div>
             </div>
         );
     }
-    else if ('sheep' === fieldAnimal.animal) {
+    else if (field === fieldAnimal.field&&'sheep' === fieldAnimal.animal) {
         return (
-            <div className="sheep">
+            <div className="sheep" onClick={()=> trinti(fieldAnimal.id)}>
+                <div className="number">{fieldAnimal.id}</div>
             </div>
         );
     }
-    else if ('chicken' === fieldAnimal.animal) {
+    else if (field === fieldAnimal.field&&'chicken' === fieldAnimal.animal) {
         return (
-            <div className="chicken">
+            <div className="chicken" onClick={()=> trinti(fieldAnimal.id)}>
+                <div className="number">{fieldAnimal.id}</div>
             </div>
         );
     }
