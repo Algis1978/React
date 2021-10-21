@@ -333,31 +333,74 @@ main {
       align-items: flex-start;
       flex-wrap: wrap;
       .cow {
-          height: 120px;
-          width: 180px;
+          height: 100px;
+          width: 150px;
           border-radius: 30%;
           border: 6px solid rgb(215, 228, 180);
           margin: 10px;
           box-shadow: 8px -4px 6px 2px rgb(50, 111, 65);
           background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
+          animation-name: karve;
+          animation-duration: 2500ms;
+          animation-iteration-count: infinite;
+      }
+      @keyframes karve {
+        0%{
+          background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
+        }
+        50%{
+          background-image: repeating-radial-gradient(rgb(253, 240, 253) 15%, rgb(106, 84, 132) 5%, rgb(160, 240, 118) 30%);
+        }
+        100%{
+          background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
+        }
       }
       .sheep {
-          height: 80px;
-          width: 60px;
-          border: 4px dotted rgb(185, 225, 226);
+          height: 70px;
+          width: 50px;
+          border: 4px double rgb(145, 230, 60);
           margin: 10px;
           border-radius: 40%;
           box-shadow: -2px -4px 6px 2px rgb(50, 111, 65);
           background-image: linear-gradient(90deg, rgb(245, 244, 225), rgb(196, 196, 193));
+          animation-name: avis;
+          animation-duration: 2000ms;
+          animation-iteration-count: infinite;
       }
+      @keyframes avis {
+        0%{
+          border-radius: 45%;
+        }
+        50%{
+          border-radius: 35%;
+        }
+        100%{
+          border-radius: 45%;
+      }
+    }
       .chicken {
-          height: 30px;
-          width: 40px;
+          box-sizing: border-box;
+          height: 25px;
+          width: 35px;
           border: 4px dotted darkturquoise;
           margin: 10px;
           border-radius: 50%;
           box-shadow: -2px -6px 6px 2px rgb(50, 111, 65);
           background-image: linear-gradient(45deg, rgb(253, 250, 144), rgb(230, 227, 162));
+          animation-name: vista;
+          animation-duration: 1000ms;
+          animation-iteration-count: infinite;
       }
+      @keyframes vista {
+        0%{
+          border: 4px dotted darkturquoise;
+        }
+        50%{
+          border: 6px dotted darkturquoise;
+        }
+        100%{
+          border: 4px dotted darkturquoise;
+      }
+    }
   }
 }
