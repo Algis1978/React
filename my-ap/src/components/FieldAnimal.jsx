@@ -1,30 +1,26 @@
-function FieldAnimal({ fieldAnimal, field, trinti} ) {
+import OneAnimal from "./OneAnimal";
+
+function FieldAnimal({ fieldAnimal, field, goHome, addWeight }) {
 
 
-    if (field === fieldAnimal.field&&'cow' === fieldAnimal.animal) {
+    if (field === fieldAnimal.field && 'cow' === fieldAnimal.animal) {
         return (
-            <div className="cow" onClick={()=> trinti(fieldAnimal.id)}>
-                <p className="number" >id: {fieldAnimal.id}</p>
-                <p><input type="number" className="input" /> kg</p>
-                <button className="button4">Įveskite svorį</button>
+            <div className="cow">
+                <OneAnimal goHome={goHome} addWeight={addWeight} fieldAnimal={fieldAnimal} ></OneAnimal>
             </div>
         );
     }
-    else if (field === fieldAnimal.field&&'sheep' === fieldAnimal.animal) {
+    else if (field === fieldAnimal.field && 'sheep' === fieldAnimal.animal) {
         return (
-            <div className="sheep" onClick={()=> trinti(fieldAnimal.id)}>
-                <div className="number">Id: {fieldAnimal.id}</div>
-                <p><input type="number" className="input" /> kg</p>
-                <button className="button4">Įveskite svorį</button>
+            <div className="sheep">
+                <OneAnimal goHome={goHome} addWeight={addWeight} fieldAnimal={fieldAnimal} ></OneAnimal>
             </div>
         );
     }
-    else if (field === fieldAnimal.field&&'chicken' === fieldAnimal.animal) {
+    else if (field === fieldAnimal.field && 'horse' === fieldAnimal.animal) {
         return (
-            <div className="chicken" onClick={()=> trinti(fieldAnimal.id)}>
-                <div className="number">Id: {fieldAnimal.id}</div>
-                <p><input type="number" className="input" /> kg</p>
-                <button className="button4">Įveskite svorį</button>
+            <div className="horse">
+                <OneAnimal goHome={goHome} addWeight={addWeight} fieldAnimal={fieldAnimal} ></OneAnimal>
             </div>
         );
     }

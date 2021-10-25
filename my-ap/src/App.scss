@@ -1,463 +1,312 @@
 body {
-  display: flex;
-  transition: 0.1s;
-  background-image: linear-gradient(135deg, rgb(46, 145, 181), rgb(145, 221, 238));
-  // justify-content: center;
-  // align-items: center;
-}
-.kvadratas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 250px;
-  height: 250px;
-  background-color: darkcyan;
-  margin: 10px;
-  border: 6px double orange;
-}
-.apskritimas {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  background-color: rgb(193, 20, 20);
-  margin: 10px;
-}
-main {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 40px;
-  width: 60vw;
-  height: 60vw;
-  margin: 20vw;
-  .mygtukas {
-    width: 20vw;
-    height: 10vw;
-    font-size: 3rem;
-    color: white;
-    background-color: teal;
-    border: 12px double yellowgreen;
-    border-radius: 12px;
-    box-shadow: 6px 6px 2px 3px rgb(241, 241, 168);
-  }
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    // flex-direction: column-reverse;
 }
 
-.skritulys {
-  width: 40vw;
-  height: fit-content;
-  background-image: linear-gradient(135deg, rgb(51, 49, 45), rgb(221, 184, 35));
-  padding: 12px;
-  .skaiciuokle {
-    width: fit-content;
-    padding: 0px 24px 0px 24px;
-    background-color: cadetblue;
-    font-size: 3rem;
-    text-shadow: none;
-    border: 8px double rgb(245, 224, 201);
-    border-radius: 12px;
-    margin: 16px;
-    box-shadow: 4px 6px 4px 0px rgba(199, 204, 204, 0.7);
-    transform: rotate(-15deg);
-    animation-name: skaiciuokle;
-    animation-duration: 3000ms;
-    animation-iteration-count: infinite;
-  }
-  @keyframes skaiciuokle {
-    0% {
-      background-color: cadetblue;
-      text-shadow: none;
-    }
-    90% {
-      background-color: cadetblue;
-      text-shadow: none;
-    }
-    95% {
-      background-color: rgb(173, 229, 232);
-      text-shadow: 2px 2px 4px 0px rgb(12, 12, 12);
-    }
-    100% {
-      background-color: cadetblue;
-      text-shadow: none;
-    }
-  }
-  .mygtukas {
-    font-size: 1.5rem;
-    background-image: linear-gradient(
-      90deg,
-      rgb(243, 171, 36),
-      rgb(247, 207, 133)
-    );
-    padding: 16px;
-    border: 4px double rgb(253, 210, 194);
-    border-radius: 16px;
-    animation-name: mygtukas;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
-    margin: 8px;
-  }
-  @keyframes mygtukas {
-    0% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-    80% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-    50% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(260, 190, 80),
-        rgb(230, 220, 90)
-      );
-    }
-    100% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-  }
-  .mygtukas:hover {
-    cursor: grab;
-  }
-  .mygtukas2 {
-    font-size: 1.5rem;
-    background-image: linear-gradient(
-      90deg,
-      rgb(243, 171, 36),
-      rgb(247, 207, 133)
-    );
-    padding: 16px;
-    border: 4px double rgb(253, 210, 194);
-    border-radius: 16px;
-    animation-name: mygtukas;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 2500ms;
-    box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
-    margin: 8px;
-  }
-  @keyframes mygtukas2 {
-    0% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-    80% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-    50% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(260, 190, 80),
-        rgb(230, 220, 90)
-      );
-    }
-    100% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(243, 171, 36),
-        rgb(247, 207, 133)
-      );
-    }
-  }
-  .mygtukas2:hover {
-    cursor: grab;
-  }
-  .mygtukas3 {
-    font-size: 1.5rem;
-    background-image: linear-gradient(
-      90deg,
-      rgb(114, 200, 202),
-      rgb(165, 224, 225)
-    );
-    padding: 16px;
-    border: 4px double rgb(253, 210, 194);
-    border-radius: 16px;
-    animation-name: mygtukas3;
-    animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-delay: 2500ms;
-    box-shadow: 6px 8px 6px 0px rgba(175, 214, 228, 0.494);
-    margin: 8px;
-  }
-  @keyframes mygtukas3 {
-    0% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-    80% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-    50% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(93, 167, 169),
-        rgb(78, 208, 208)
-      );
-    }
-    100% {
-      background-image: linear-gradient(
-        90deg,
-        rgb(114, 200, 202),
-        rgb(165, 224, 225)
-      );
-    }
-  }
-  .mygtukas3:hover {
-    cursor: grab;
-  }
-}
-.mygtukas3 {
-  font-size: 1.5rem;
-  background-image: linear-gradient(
-    90deg,
-    rgb(114, 200, 202),
-    rgb(165, 224, 225)
-  );
-  padding: 16px;
-  border: 4px double rgb(253, 210, 194);
-  border-radius: 16px;
-  animation-name: mygtukas3;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-delay: 2500ms;
-  box-shadow: 6px 8px 6px 0px rgba(175, 214, 228, 0.494);
-  margin: 8px;
-}
-@keyframes mygtukas3 {
-  0% {
-    background-image: linear-gradient(
-      90deg,
-      rgb(114, 200, 202),
-      rgb(165, 224, 225)
-    );
-  }
-  80% {
-    background-image: linear-gradient(
-      90deg,
-      rgb(114, 200, 202),
-      rgb(165, 224, 225)
-    );
-  }
-  50% {
-    background-image: linear-gradient(
-      90deg,
-      rgb(93, 167, 169),
-      rgb(78, 208, 208)
-    );
-  }
-  100% {
-    background-image: linear-gradient(
-      90deg,
-      rgb(114, 200, 202),
-      rgb(165, 224, 225)
-    );
-  }
-}
-.mygtukas3:hover {
-  cursor: grab;
-}
-.mygtukas4 {
-  font-size: 1.5rem;
-  background-image: linear-gradient(
-    90deg,
-    rgb(243, 171, 36),
-    rgb(247, 207, 133)
-  );
-  padding: 16px;
-  border: 4px double rgb(253, 210, 194);
-  border-radius: 16px;
-  animation-name: mygtukas;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-delay: 2500ms;
-  box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
-  margin: 8px;
-}
-.mygtukas4:hover {
-  cursor: grab;
-}
-.mygtukas5 {
-  font-size: 1.5rem;
-  background-image: linear-gradient(
-    90deg,
-    rgb(243, 171, 36),
-    rgb(247, 207, 133)
-  );
-  padding: 16px;
-  border: 4px double rgb(253, 210, 194);
-  border-radius: 16px;
-  animation-name: mygtukas;
-  animation-duration: 5s;
-  animation-iteration-count: infinite;
-  animation-delay: 2500ms;
-  box-shadow: 2px 4px 12px 0px rgba(235, 219, 154, 0.57);
-  margin: 8px;
-}
-.mygtukas5:hover {
-  cursor: grab;
+.blue-square {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
 }
 
-.div {
-  border: 6px double green;
-  padding:3px;
-  margin:8px;
+.red-circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 20px;
+}
+
+h1.a {
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.cow-field {
+    background-color: aquamarine;
+    width: 500px;
+    height: 300px;
+    border: 4px dashed darkturquoise;
+    border-radius: 30px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .counter {
+        position: absolute;
+        top: 0;
+        left: 5px;
+        margin: 10px;
+        font-size: 60px;
+        font-weight: bold;
+    }
+}
+
+@keyframes short-press {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.hide {
+    display: none;
+}
+
+button {
+    display: block;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .75em;
+    letter-spacing: 1px;
+    height: 38px;
+    width: 120px;
+    line-height: 38px;
+    overflow: hidden;
+    background: #4dbecf;
+    border-radius: 3px;
+    box-shadow: 0 15px 30px rgba(black, .1);
+    border: 0;
+    cursor: pointer;
+    transition: all .3s ease;
+    margin: 7px;
+    &:hover,
+    &:focus {
+        box-shadow: 0 5px 15px rgba(black, .1);
+    }
+    &.animated {
+        animation: .75s short-press cubic-bezier(0.770, 0.000, 0.175, 1.000) forwards;
+    }
+    >span {
+        display: block;
+        color: white;
+        text-align: center;
+        &.pre-state-msg {
+            transition: all .7s cubic-bezier(0.770, 0.000, 0.175, 1.000);
+            transition-delay: .75s;
+        }
+    }
+    &.state-1 {
+        .pre-state-msg {
+            margin-top: -38px;
+        }
+    }
+    &.state-2 {
+        .pre-state-msg {
+            margin-top: -76px;
+        }
+    }
+}
+
+.circler {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin: 20px;
+    span {
+        font-size: 40px;
+    }
+}
+
+.sq {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    margin: 20px;
+    border: 4px dotted deeppink;
+    transition: all 4s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.zone {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    .zone-show {
+        box-sizing: border-box;
+        width: 70vw;
+        height: 100vh;
+        overflow-y: scroll;
+        padding: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        div {
+            height: 100px;
+            width: 100px;
+            margin: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    }
+    .zone-enter {
+        width: 30vw;
+        height: 100vh;
+        background-color: lightgreen;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 15px;
+        input,
+        select {
+            margin: 10px;
+        }
+        span {
+            display: inline-block;
+            width: 70px;
+        }
+    }
 }
 
 .field {
-  width: fit-content;
-  box-sizing: border-box;
-  border-radius: 36px;
-  padding:8px;
-  margin:1vw;
-  border: 6px solid rgb(213, 213, 10);
-  background-image: linear-gradient(135deg, green, yellow);
-  .laukoNr {
-    color:white;
-    font-size: 1.5rem;
-    font-weight: bolder;
-    width: fit-content;
-    height: fit-content;
-    margin:auto;
-  }
-
-  div {
-      margin: 20px 0;
-      display: flex;
-      justify-content: flex-start;
-      align-items: flex-start;
-      flex-wrap: wrap;
-      .cow {
-          height: 100px;
-          width: 150px;
-          border-radius: 30%;
-          border: 6px solid rgb(215, 228, 180);
-          margin: 10px;
-          box-shadow: 8px -4px 6px 2px rgb(50, 111, 65);
-          background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
-          animation-name: karve;
-          animation-duration: 2500ms;
-          animation-iteration-count: infinite;
-      }
-      @keyframes karve {
-        0%{
-          background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    &__part {
+        background-color: lightgreen;
+        margin: 20px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        min-width: 200px;
+        min-height: 200px;
+        width: 30%;
+        box-sizing: border-box;
+        .cow {
+            height: 270px;
+            width: 270px;
+            border-radius: 50%;
+            border: 4px dotted deeppink;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        50%{
-          background-image: repeating-radial-gradient(rgb(253, 240, 253) 15%, rgb(106, 84, 132) 5%, rgb(160, 240, 118) 30%);
+        .sheep {
+            height: 270px;
+            width: 270px;
+            border: 4px dotted darkturquoise;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
         }
-        100%{
-          background-image: repeating-radial-gradient(rgb(253, 253, 253) 15%, rgb(111, 111, 111) 5%, rgb(118, 240, 118) 25%);
+        .horse {
+            height: 270px;
+            width: 270px;
+            border: 4px dotted darkorchid;
+            margin: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            border-radius: 20px;
         }
-      }
-      .sheep {
-          height: 70px;
-          width: 50px;
-          border: 4px double rgb(145, 230, 60);
-          margin: 10px;
-          border-radius: 40%;
-          box-shadow: -2px -4px 6px 2px rgb(50, 111, 65);
-          background-image: linear-gradient(90deg, rgb(245, 244, 225), rgb(196, 196, 193));
-          animation-name: avis;
-          animation-duration: 2000ms;
-          animation-iteration-count: infinite;
-      }
-      @keyframes avis {
-        0%{
-          border-radius: 45%;
-        }
-        50%{
-          border-radius: 35%;
-        }
-        100%{
-          border-radius: 45%;
-      }
     }
-      .chicken {
-          box-sizing: border-box;
-          height: 25px;
-          width: 35px;
-          border: 4px dotted darkturquoise;
-          margin: 10px;
-          border-radius: 50%;
-          box-shadow: -2px -6px 6px 2px rgb(50, 111, 65);
-          background-image: linear-gradient(45deg, rgb(253, 250, 144), rgb(230, 227, 162));
-          animation-name: vista;
-          animation-duration: 1000ms;
-          animation-iteration-count: infinite;
-      }
-      @keyframes vista {
-        0%{
-          border: 4px dotted darkturquoise;
-        }
-        50%{
-          border: 6px dotted darkturquoise;
-        }
-        100%{
-          border: 4px dotted darkturquoise;
-      }
+    input {
+        outline: none;
+        height: 20px;
+        border: none;
+        margin: 5px 0;
+        font-size: 18px;
     }
-  }
 }
-.mygtukuLaukas {
-  box-sizing: border-box;
-  border: 6px double darkmagenta;
-  border-radius: 32px;
-  padding:4px;
-  margin:1%;
-  background-image: linear-gradient(45deg, rgb(242, 250, 83), rgb(207, 243, 107));
-  select {
-    display:block;
-    padding:6px;
-    margin:auto;
-    border: 4px solid rgb(196, 199, 14);
-    border-radius: 16px;
-    font-size: 1.5rem;
-    background-color: forestgreen;
-    color: white;
-    outline: none;
-  }
-  h2{
+
+.new {
+    background-color: darkslateblue;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    select,
+    input {
+        height: 26px;
+        font-size: 22px;
+        outline: none;
+        margin: 5px 0;
+    }
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: lightskyblue;
+    }
+    span {
+        font-size: 22px;
+        margin: 20px 0 0 0;
+        color: lightskyblue;
+    }
+}
+
+.statistics {
+    background-color: darkslateblue;
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    h2 {
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: lightskyblue;
+    }
+    .stats {
+        letter-spacing: 1px;
+        color: lightskyblue;
+        font-size: 28px;
+        margin: 10px;
+        padding: 5px;
+        border: 1px solid deeppink;
+    }
+}
+
+h1 {
     text-align: center;
-  }
+    font-size: 40px;
+    color: deeppink;
 }
-.number {
-  font-weight: bolder;
-  color: white;
-  background-color: forestgreen;
-  padding:1px 6px 1px 6px;
-  border-radius: 50%;
-}
-.input{
-  width: 32px;
-  border-radius: 6px;
-  outline: none;
-  border: 2px solid orange;
 
+.buttons-holder {
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
