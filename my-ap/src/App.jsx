@@ -7,6 +7,8 @@ function App() {
     const [field, setField] = useState([]);
     const [fieldNamber, setFieldNamber] = useState(1);
     const [weight, setWeight] = useState('');
+    const [data, setData] = useState('');
+    const [laikas, setLaikas] = useState('');
     const [fieldType, setFieldType] = useState('cow');
 
     const allAnimals = useRef(0);
@@ -15,6 +17,12 @@ function App() {
 
     const handleWeight = e => {
         setWeight(e.target.value);
+    }
+    const datosFunkcija = e => {
+        setData(e.target.value);
+    }
+    const laikoFunkcija = e => {
+        setLaikas(e.target.value);
     }
 
     const selectfieldType = e => {
@@ -141,8 +149,13 @@ function App() {
                     <option value={'horse'}>Horse</option>
                 </select>
                 <span>Animal weight</span>
-                <input type="text" onChange={handleWeight} value={weight} />
+                <input type="number" onChange={handleWeight} value={weight} />
                 <button onClick={add}>Add new animal</button>
+                <span>Last feed time</span>
+                <input type="date" onChange={datosFunkcija} value={data} />
+                <button onClick={add}>Set date</button>
+                <input type="time" onChange={laikoFunkcija} value={laikas} />
+                <button onClick={add}>Set time</button>
             </div>
         </>
     );
