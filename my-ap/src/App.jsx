@@ -8,7 +8,7 @@
 import { useState, useEffect } from "react";
 import FieldAnimal from "./components/FieldAnimal";
 //import ID generatorius
-import idGenerator from "../src/common/idGenerator";
+import idGenerator from "./functions/idGenerator";
 
 
 function App() {
@@ -19,15 +19,16 @@ function App() {
     const add = (what) => {
         //Negalima tiesiogiai keisti steito masyvo, tai padaroma jo kopija su slice
         const fieldCopy = field.slice();
-        //papildomai pridedamas id:
+        //sudaromas objektas su savybėm ID, rūšis ir laukas, kur ID paimamas iš ID gneratoriaus, o lauko numeris - iš fieldNumber steito, tuo pat metu rūšis paimama iš button įvykio.
         fieldCopy.push({id:idGenerator(), animal:what, field:parseInt(fieldNumber)});
+        //Sudaromas aka 'steitas' iš objekto
         setField(fieldCopy);
         console.log(fieldCopy);
 
-        //Įrašomas objektas į localStorage
+        //Naršyklės localStorage įvedamas įrašas, kurio savybė yra sukurtas 'fieldCopy' objektas
         localStorage.setItem('animals', JSON.stringify(fieldCopy))
     }
-
+    //Sukuriamas 
     const selectField = (e) => {
         setFieldNumber(e.target.value)
     }
@@ -59,21 +60,29 @@ function App() {
     //Funkcija, kuri trina figuras 
     const trinti = (id) => {
         const fieldCopy = field.slice();
-        fieldCopy.forEach( (a, i)=> {
-            if (a.id === id) {
-                Array.splice(i, 1);
-            }
-        })
+        const ind = fieldCopy.findIndex(e => e.id == id);
+        fieldCopy.splice(ind, 1)
         setField(fieldCopy)
         //nurodoma localStorage, kad nebėra id figuros
         localStorage.setItem('animals', JSON.stringify(fieldCopy))
     }
+    //Funkcija, kuri trina grupę figūrų 
+    const trintiGrupe = (group) => {
+        const fieldCopy = field.slice();
+        while(true) {
+            const ind = fieldCopy.findIndex(e => e.animal === group);
+            if (ind < 0) {
+                break;
+            }
+            fieldCopy.splice(ind, 1);
+        }
+        setField(fieldCopy);
+        localStorage.setItem('animals', JSON.stringify(fieldCopy))
+    }
 
-    //Pasiimame duomenis iš localStorage
- 
     useEffect(() => {
         const animalsFromStorage = localStorage.getItem('animals')
-        if (null !== animalsFromStorage) {
+        if (animalsFromStorage !== null) {
             setField(JSON.parse(animalsFromStorage))
         }
     }, []);
@@ -87,7 +96,7 @@ function App() {
         <div className="field">
             <div className="laukoNr">Pirmas laukas</div>
             <div>
-          {field.map((fieldAnimal, i)=> <FieldAnimal key={i} field={1} fieldAnimal={fieldAnimal}trinti={trinti}></FieldAnimal>)}
+          {field.map((fieldAnimal, i)=> <FieldAnimal key={i} field={1} fieldAnimal={fieldAnimal} trinti={trinti}></FieldAnimal>)}
             </div>
         </div>
         <div className="field">
@@ -104,14 +113,23 @@ function App() {
         </div>
 
         <div className="mygtukuLaukas">
-        <button className = "mygtukas4"  onClick={() => add('cow')}>Pridėti karvę</button>
-        <button className = "mygtukas4" onClick={() => add('sheep')}>Pridėti avį</button>
-        <button className = "mygtukas4" onClick={() => add('chicken')}>Pridėti vištą</button>
+        <h2>Pasirinkite lauką:</h2>
         <select value={fieldNumber} onChange={selectField}>
                 <option value={1}>Pirmas laukas</option>
                 <option value={2}>Antras laukas</option>
                 <option value={3}>Trečias laukas</option>
             </select>
+            <h2>Pridėkite gyvūnus:</h2>
+        <button className = "mygtukas4"  onClick={() => add('cow')}>Pridėti karvę</button>
+        <button className = "mygtukas4" onClick={() => add('sheep')}>Pridėti avį</button>
+        <button className = "mygtukas4" onClick={() => add('chicken')}>Pridėti vištą</button>
+        </div>
+
+        <div className="mygtukuLaukas">
+            <h2>Trinkite gyvūnų grupes:</h2>
+        <button className = "mygtukas3"  onClick={() => trintiGrupe('cow')}>Trinti karves</button>
+        <button className = "mygtukas3" onClick={() => trintiGrupe('sheep')}>Trinti avis</button>
+        <button className = "mygtukas3" onClick={() => trintiGrupe('chicken')}>Trinti vištas</button>
         </div>
         </>
     );
