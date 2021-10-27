@@ -24,14 +24,17 @@ app.use(express.json());
 
 //Routingas - nustatomas kelias narsykles uzklausai
 app.get('/', (req, res) => {
-  res.send('<h1>Hello World! Yeahhhh! Fuck you</h1>')
+  res.send('<h1>Hello World! Yeahhhh! Boom Boom</h1>')
 })
 //req - is stringo padarytas objektas, ateinantis is narsykles
 // res - atsakymas narsyklei
 // labas dvitaskis nurodo parametra (id)
-app.get('/labas', (req, res) => {
+app.get('/labas:id', (req, res) => {
   res.send(`<h1>UHU-HUB-UH-U<br> ${req.params.id}</h1>`)
 })
+app.get('/labas', (req, res) => {
+    res.send(`<h1>UHU-HUB-UH-U</h1>`)
+  })
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
