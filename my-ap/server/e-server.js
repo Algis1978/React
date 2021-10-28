@@ -7,6 +7,7 @@ const port = 3003
 const con = mysql.createConnection({
     host: "localhost",
     user: "root",
+    database: "zverincius",
     password: "root"
   });
   
@@ -35,6 +36,17 @@ app.get('/labas:id', (req, res) => {
 app.get('/labas', (req, res) => {
     res.send(`<h1>UHU-HUB-UH-U</h1>`)
   })
+
+app.get('/JSONtest', (req, res) => {
+    res.send(JSON.stringify({JSONtest: 'Viskas OK'}))
+  })
+
+app.get('/zveris', (req, res) => {
+  const sqlUzklausa = `select * from zveris`
+  con.query(sqlUzklausa, (err, results) =>{
+  if (err) {console.log("Klaida");throw err}
+  else {res.send(results)} 
+  })})
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

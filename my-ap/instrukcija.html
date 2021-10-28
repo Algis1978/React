@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Instrukcija duomenų bazės sujungimo su React ir Node Express</h1>
+    <ol>
+        <li>Susikuriama duomenų bazė</li>
+        <li>Susikuriamas React App.jsx</li>
+        <li>Įdiegiama Axios biblioteka (galima naudoti JS Fetch API su JS)<br>su 'npm install axios'<br>įterpiamas į App.jsx su 'import axios from "axios"'</li>
+        <li>Pasileidžiamas React serveris, po to pasleidžiamas Express serveris su Nodemon<br> Turi rodyti 'connected!'
+        </li>
+        <li>serverio.js programoje padaromas testinis JSON perdavimas:<br>' res.send(JSON.stringify({JSONtest: 'Viskas OK'}))'<br>Rezultatas patikrinamas su naršykle.<br>Dabar reikia, kad į šį perdavim Ūaka routerį) kreiptųsi React</li>
+        <li>useEffect naudojamas šiam kreipimuisi.<br>
+        Pirmas jo argumentas - funkcija, antras - tuščias masyvas.<br>
+        Su axios krepiamasi į kitą serverį ir į konkretų puslapį.<br>
+        Grąžinamas res.data yra tik duomenys, nes tik jų reikia.<br>
+        useEffect( () => {<br>
+            axios.get('http://localhost:3003/JSONtest')<br>
+            .then (res => {<br>
+                console.log(res.data)<br>
+            })}, []) </li>
+        <li>Po to reikalingi du 'powershell' terminalai.<br>
+        Iš vieno pasileidžiamas React, iš kito - Express serveriai.</li>
+        <li>Toliau sukuriame užklausą e-server.js į duomenų bazės lentelę 'zveris':</li>
+        app.get('/zveris', (req, res) => {<br>
+            const sqlUzklausa = `select * from zveris`</b>
+            con.query(sqlUzklausa, (err, results) =>{<br>
+            if (err) {console.log("Klaida");throw err}<br>
+            else {res.send(results)}  }) })<br>
+            Čia 'sqlUžklausa' yra kreipimosi turinys, o 'con.query' ją persiunčia, 'res.send' grąžina rezultatą.<br>
+            Papildomai pasitikrinti 'con' aprašyme, ar nurodyta duomenų bazė ('zverincius' šiuo atveju).
+        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>
+            
+    </ol>
+</body>
+</html>

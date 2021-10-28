@@ -1,11 +1,12 @@
 body {
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    // height: 100vh;
+    padding: 20px;
+
+    height: 100vh;
     width: 100vw;
     box-sizing: border-box;
+    background-image: linear-gradient(135deg, rgb(126, 126, 241), rgb(245, 245, 94));
+    background-repeat: no-repeat;
     // flex-direction: column-reverse;
 }
 
@@ -301,7 +302,8 @@ button {
 h1 {
     text-align: center;
     font-size: 40px;
-    color: deeppink;
+    color: rgb(226, 221, 85);
+    text-shadow: 3px 4px rgb(8, 8, 8);
 }
 
 .buttons-holder {
@@ -309,4 +311,29 @@ h1 {
     display: flex;
     justify-content: flex-start;
     align-items: center;
+}
+.area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 6px double rgb(165, 68, 68);
+    border-radius: 24px;
+    box-shadow: 2px 4px 4px 2px white;
+}
+.zveriuSarasas {
+    background-color: darkblue;
+    width:fit-content;
+    height: fit-content;
+    .vienasZveris {
+        display:inline-flex;
+        border: 2px solid white;
+        margin-left: 2px;
+        margin-right: 2px;
+        padding: 4px;
+        color:white;
+        width:fit-content;
+        height:fit-content;
+
+    }
+    
 }
