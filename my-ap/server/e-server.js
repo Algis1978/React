@@ -51,3 +51,18 @@ app.get('/zveris', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
+
+// zveries duomenu persiuntimas is React i duomenu baze 
+app.post('/zveris', (req, res) => {
+  const sql = `INSERT INTO zveris (Vardas) VALUES (?)`;
+  con.query(sqlUzklausa, [
+    req.body["Vardas"]
+  ], (err, results) => {
+    if (err) {
+      throw err
+    }
+    res.send(results)
+  })
+})
+

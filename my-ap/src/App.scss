@@ -309,6 +309,14 @@ h1 {
     justify-content: flex-start;
     align-items: center;
 }
+.container{
+ display: grid;
+ grid-template-columns: 1fr 3fr;
+ gap: 8px;
+ padding:24px;
+ width: fit-content;
+ margin:auto;
+}
 .area {
     display:flex;
     align-items: center;
@@ -320,19 +328,19 @@ h1 {
 }
 .zveriuSarasas {
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:8px;
     background-color: rgb(32, 32, 145);
     border: 1px solid rgb(1, 20, 25);
     border-radius: 16px;
-    margin:0px, 8px 8px 8px;
-    padding:8px 16px 8px 16px;
+    padding:16px;
     box-shadow: 8px 6px 8px 2px rgb(162, 222, 238);
     width: fit-content;
     height: fit-content;
     .vienasZveris {
         border: 2px ridge #608fec;
         border-radius: 8px;
-        margin:2px 4px 2px 4px;
+        //margin:2px 4px 2px 4px;
         padding: 8px;
         color:white;
         font-size: 1.2rem;
@@ -354,6 +362,42 @@ h1 {
         .text {
             color:rgb(247, 247, 159);
         }
+    }  
+}
+.zverissukurti {
+    * {
+        padding:0px;
+        margin:3px;
     }
-    
+    background-color: rgb(32, 32, 145);
+    border: 1px solid rgb(1, 20, 25);
+    border-radius: 16px;
+    h2 {
+        text-align: center;
+        color:yellow;
+        margin-top: 16px;
+        margin-bottom: 16px;
+    }
+    .menu {
+        padding: 4px;
+        background-color: rgb(15, 15, 103);
+        margin:0px 16px 16px 16px;
+        border-radius: 16px;
+    }
+    .text {
+        color:rgb(247, 247, 159);
+        font-size: 1.2rem;
+    }
+    input {
+        font-size: 1.2rem;
+        color: rgb(15, 15, 103);
+        width: 180px;
+        outline: none;
+        border: 1px solid rgb(247, 247, 159);
+        border-radius: 4px;
+        margin-bottom: 8px;
+    }
+    button {
+        margin:auto;
+    }
 }
