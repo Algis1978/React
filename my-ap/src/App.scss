@@ -1,10 +1,7 @@
 body {
-    margin: 0;
-    padding: 20px;
-
+    width: 100%;
     height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
+    padding: 0px;
     background-image: linear-gradient(135deg, rgb(126, 126, 241), rgb(245, 245, 94));
     background-repeat: no-repeat;
     // flex-direction: column-reverse;
@@ -302,7 +299,7 @@ button {
 h1 {
     text-align: center;
     font-size: 40px;
-    color: rgb(226, 221, 85);
+    color: yellow;
     text-shadow: 3px 4px rgb(8, 8, 8);
 }
 
@@ -313,27 +310,50 @@ h1 {
     align-items: center;
 }
 .area {
-    display: flex;
-    justify-content: center;
+    display:flex;
     align-items: center;
-    border: 6px double rgb(165, 68, 68);
-    border-radius: 24px;
-    box-shadow: 2px 4px 4px 2px white;
+    justify-content: center;
+    padding:8px;
+    //border: 6px double rgb(165, 68, 68);
+    //border-radius: 24px;
+    //box-shadow: 2px 4px 4px 2px white;
 }
 .zveriuSarasas {
-    background-color: darkblue;
-    width:fit-content;
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    background-color: rgb(32, 32, 145);
+    border: 1px solid rgb(1, 20, 25);
+    border-radius: 16px;
+    margin:0px, 8px 8px 8px;
+    padding:8px 16px 8px 16px;
+    box-shadow: 8px 6px 8px 2px rgb(162, 222, 238);
+    width: fit-content;
     height: fit-content;
     .vienasZveris {
-        display:inline-flex;
-        border: 2px solid white;
-        margin-left: 2px;
-        margin-right: 2px;
-        padding: 4px;
+        border: 2px ridge #608fec;
+        border-radius: 8px;
+        margin:2px 4px 2px 4px;
+        padding: 8px;
         color:white;
+        font-size: 1.2rem;
         width:fit-content;
         height:fit-content;
-
+        background-color: rgb(15, 15, 103);
+        .vardas {
+            color:yellow;
+            text-align: center;
+            font-weight: bolder;
+            font-size: 1.4rem;
+        }
+        .invnr {
+            color:rgb(247, 247, 159);
+            text-align: center;
+            font-weight: bolder;
+            margin-bottom: 8px;
+        }
+        .text {
+            color:rgb(247, 247, 159);
+        }
     }
     
 }
