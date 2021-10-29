@@ -34,8 +34,27 @@
             else {res.send(results)}  }) })<br>
             Čia 'sqlUžklausa' yra kreipimosi turinys, o 'con.query' ją persiunčia, 'res.send' grąžina rezultatą.<br>
             Papildomai pasitikrinti 'con' aprašyme, ar nurodyta duomenų bazė ('zverincius' šiuo atveju).
-        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>
+        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>  
+    </ol>
+    <h1>Įrašų įvedimo duomenų bazėje instrukcija</h1>
+    <ol>
+        <li>Kiekvienai įvesties vertei sukuriamas steitas (šiuo atveju, jų objektas):<br>const [vertes, setVertes] = useState( {} )</li>
+        <li>Po to sukuriama kontrolės funkcija:<br>
+            const formControl = (e, what) => {<br>
+                const vertesCopy = {...vertes};<br>
+                vertesCopy[what] = e.target.value;<br>
+                setVertes (vertesCopy);}</li>  
+        <li>Toliau sukuriamas pačios formos HTML'as:<br>
+            <input type="text" value={vertes["Vardas"]} onChange={(e) => formControl(e, "Vardas")} required /></li> 
+        <li>App.jsx byloje susikuriama funkcija, kuri pasiųs naujus duomenis į duomenų bazės lentelę.<br>
+            const sukurti = vertes => {<br>
+                axios.post('http://localhost:3003/zveris', vertes)<br>
+                .then (res => {<br>
+                    setAtnaujinti(Date.now());<br>
+                    console.log(res.data) }) }</li>
+        <li>
             
+        </li>
     </ol>
 </body>
 </html>

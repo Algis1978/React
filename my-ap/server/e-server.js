@@ -55,9 +55,14 @@ app.listen(port, () => {
 
 // zveries duomenu persiuntimas is React i duomenu baze 
 app.post('/zveris', (req, res) => {
-  const sql = `INSERT INTO zveris (Vardas) VALUES (?)`;
+  const sqlUzklausa = `INSERT INTO zveris (Vardas, Masė, Registracijos_data, Išlaikymo_kaina_eurais_per_mėn, Lytis, Rūšis) VALUES (?, ?, ?, ?, ?, ?)`;
   con.query(sqlUzklausa, [
-    req.body["Vardas"]
+    req.body["Vardas"],
+    req.body["Masė"],
+    req.body["Registracijos_data"],
+    req.body["Išlaikymo_kaina_eurais_per_mėn"],
+    req.body["Lytis"],
+    req.body["Rūšis"]
   ], (err, results) => {
     if (err) {
       throw err
