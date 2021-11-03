@@ -403,3 +403,22 @@ h1 {
         margin:auto;
     }
 }
+.selectForm {
+    width: 80%;
+    min-height: 32px;
+    background-color: coral;
+    padding:8px;
+    margin:auto;
+    border: 1px solid darkblue;
+    border-radius: 16px;
+    select {
+        font-size: 1.2rem;
+        border-radius:  8px;
+        outline:none;
+        padding:2px;
+    }
+    button {
+        display: inline-block;
+        border-radius:  8px;
+    }
+}

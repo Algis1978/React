@@ -48,6 +48,10 @@ app.get('/zveris', (req, res) => {
   else {res.send(results)} 
   })})
 
+  app.get('/zveriu-vardas', (req, res) => {
+    const sql =  `select `
+  })
+
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
