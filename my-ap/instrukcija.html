@@ -5,9 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body {
+            padding:16px;
+        }
+        h1, h2 {
+            color: rgb(8, 101, 101);
+        }
+        ul li a {
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: azure;
+            background-color: darkblue;
+            padding:4px;
+            border-radius: 8px;;
+        }
+        ul li {
+            color: darkblue;
+            padding:8px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Node Express sukūrimo instrukcija</h1>
+    <h1>Turinys</h1>
+    <ul>
+        <li>
+            <a href="#NDexpress">Node Express sukūrimo instrukcija</a> 
+        </li>
+        <li>
+            <a href="#react-express">Duomenų bazės sujungimo su React ir Node Express instrukcija</a>
+        </li>
+        <li>
+            <a href="#irasu-pavaizdavimas">Duomenų bazės įrašų pavaizdavimas</a>
+        </li>
+        <li>
+            <a href="#irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</a>
+        </li>
+            
+            
+            <a href="#NDexpress"></a>
+       
+    </ul>
+    <h2 id="NDexpress">Node Express sukūrimo instrukcija</h2>
     <ol>
         <li>Reikia instaliuoti node (npm init, npm install), nodemon, mysql, cors<br>
             const express = require('express')<br>
@@ -67,14 +106,14 @@
                 }) })
         </li>
     </ol>
-    <h1>Instrukcija duomenų bazės sujungimo su React ir Node Express</h1>
+    <h2 id="react-express">Duomenų bazės sujungimo su React ir Node Express instrukcija</h2>
     <ol>
         <li>Susikuriama duomenų bazė</li>
         <li>Susikuriamas React App.jsx</li>
-        <li>Įdiegiama Axios biblioteka (galima naudoti JS Fetch API su JS)<br>su 'npm install axios'<br>įterpiamas į App.jsx su 'import axios from "axios"'</li>
+        <li>Įdiegiama Axios biblioteka (galima naudoti JS Fetch API su JS)<br>su 'npm install axios'.<br>Įterpiamas į App.jsx su 'import axios from "axios"'.<br>Axios reikalingas React susijungimui su Express serveriu.</li>
         <li>Pasileidžiamas React serveris, po to pasleidžiamas Express serveris su Nodemon<br> Turi rodyti 'connected!'
         </li>
-        <li>serverio.js programoje padaromas testinis JSON perdavimas:<br>' res.send(JSON.stringify({JSONtest: 'Viskas OK'}))'<br>Rezultatas patikrinamas su naršykle.<br>Dabar reikia, kad į šį perdavimą (aka routerį) kreiptųsi React</li>
+        <li>serverio .js byloje padaromas testinis JSON perdavimas:<br>' res.send(JSON.stringify({JSONtest: 'Viskas OK'}))'<br>Rezultatas patikrinamas su naršykle.<br>Dabar reikia, kad į šį perdavimą (aka routerį) kreiptųsi React</li>
         <li>useEffect naudojamas šiam kreipimuisi. Įvedamas į App.jsx funkcijos kūną.<br>
         Pirmas jo argumentas - funkcija, antras - tuščias masyvas, kuris rodo, kad useEffect bus aktyvuota vieną kartą.<br>
         Su axios krepiamasi į kitą serverį ir į konkretų puslapį.<br>
@@ -94,13 +133,30 @@
             else {res.send(results)}  }) })<br>
             Čia 'sqlUžklausa' yra kreipimosi turinys, o 'con.query' ją persiunčia, 'res.send' grąžina rezultatą.<br>
             Papildomai pasitikrinti 'con' aprašyme, ar nurodyta duomenų bazė ('zverincius' šiuo atveju).
-        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>  
+        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>
+        <li>Naršyklės 'Network' kortelėje galima matyti sąsajos procesus.</li>  
     </ol>
-    <h1>Duomenų bazės įrašų pavaizdavimas</h1>
+    <h2 id="irasu-pavaizdavimas">Duomenų bazės įrašų pavaizdavimas</h2>
     <ol>
-
+        <li>Susikuriami komponentai, kuriuose formuojamas JSX vaizdas 'return' skiltyje:<br>
+            export default function Table () {<br>
+            return (<div></div>) }
+        </li>
+        <li>React App.jsx byloje importuojami komponentai:<br>
+            import component from "./Components/component"
+        </li>
+        <li>Susikuriamos atitinkamų komponentų CSS bylos
+        </li>
+        <li>Komponento funkcijos argumente iš duomenų bazės imamas kintamasis nurodomas kaip savybė (aka propsas):<br>
+        function TableRow ( {item} )
+        </li>
+        <li>Po to propso elementai sukeliami į jų vietas JSX'e:<br>
+            div{item.kaina}div
+        </li>
+        <li>Sukurūs vieną komponentą jis gali būti padauginamas tėviname komponente imant įrašą iš DB ir naudojant .map metodą.<br>Tam reikia tėvinio komponento funkcijos argumente vėl nurodyti propsą (kito pav.).
+        </li>
     </ol>
-    <h1>Įrašų įvedimo duomenų bazėje instrukcija</h1>
+    <h2 id="irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</h2>
     <ol>
         <li>Kiekvienai įvesties vertei sukuriamas steitas (šiuo atveju, jų objektas) komponento jsx byloje:<br>const [vertes, setVertes] = useState( {} )</li>
         <li>Po to sukuriama kontrolės funkcija:<br>
