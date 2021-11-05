@@ -125,35 +125,57 @@
             })}, []) </li>
         <li>Po to reikalingi du 'powershell' terminalai.<br>
         Iš vieno pasileidžiamas React, iš kito - Express serveriai.</li>
-        <li>Toliau sukuriame užklausą e-server.js į duomenų bazės lentelę 'zveris':</li>
-        app.get('/zveris', (req, res) => {<br>
+        <li>Toliau sukuriame užklausą e-server.js byloje į duomenų bazės lentelę 'prekes' je naršyklės užklausoje yra '/prekes' kelias:<br>
+        app.get('/prekes', (req, res) => {<br>
             const sqlUzklausa = `select * from zveris`</b>
-            con.query(sqlUzklausa, (err, results) =>{<br>
+            sasaja.query(sqlUzklausa, (err, results) =>{<br>
             if (err) {console.log("Klaida");throw err}<br>
             else {res.send(results)}  }) })<br>
-            Čia 'sqlUžklausa' yra kreipimosi turinys, o 'con.query' ją persiunčia, 'res.send' grąžina rezultatą.<br>
-            Papildomai pasitikrinti 'con' aprašyme, ar nurodyta duomenų bazė ('zverincius' šiuo atveju).
-        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/zveris')</li>
+            Čia 'sqlUzklausa' yra kreipimosi turinys, o 'sasaja.query' ją persiunčia, 'res.send' grąžina rezultatą naršyklei.<br>
+            Papildomai pasitikrinti 'sasaja' aprašyme, ar nurodyta duomenų bazė ('prekiu_krepselis' šiuo atveju).</li>
+        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>axios.get('http://localhost:3003/prekes')</li>
         <li>Naršyklės 'Network' kortelėje galima matyti sąsajos procesus.</li>  
     </ol>
     <h2 id="irasu-pavaizdavimas">Duomenų bazės įrašų pavaizdavimas</h2>
     <ol>
+        <li>React'o App.jsx byloje importuojamas useState hukas:<br>
+            import {useEffect, useState} from "react"<br>
+            Jį galima buvo importuoti iš pat pradžių.
+        </li>
+        <li>Po to useState hukas panaudojamas su paimamo masyvo duomenimis ten pat(App.jsx):<br>
+            const [prekes, setPrekes] = useState ([])<br>
+            Čia useState argumente nurodoma pradinė steito 'prekes' būsena, šiuo aveju tuščias masyvas.
+        </li>
+        <li>Po to useEffect huko viduje po .then usePrekes prisikiriamas masyvo duomenys iš Express serverio (ir DB tuo pačiu):<br>
+            .then (res => {<br>
+            setPrekes = res.data})<br>
+            Taip pakeičiamas steitas iš tuščio masyvo į masyvą iš Express serverio atsakymo į užklausą.
+        </li>
         <li>Susikuriami komponentai, kuriuose formuojamas JSX vaizdas 'return' skiltyje:<br>
             export default function Table () {<br>
             return (<div></div>) }
         </li>
-        <li>React App.jsx byloje importuojami komponentai:<br>
+        <li>React App.jsx byloje importuojamas tėvinis pavaizdavimo komponentas:<br>
             import component from "./Components/component"
         </li>
-        <li>Susikuriamos atitinkamų komponentų CSS bylos
+        <li>Vaikinis komponentas gali būti padauginamas tėviname komponente imant duomenis iš Express/DB ir naudojant .map metodą.<br> Vaikinis komponentas importuojamas tėv. komponente.:<br>
+            import Vaikkomp from "./Components/VaikKomp"<br>
         </li>
-        <li>Komponento funkcijos argumente iš duomenų bazės imamas kintamasis nurodomas kaip savybė (aka propsas):<br>
-        function TableRow ( {item} )
+        <li>Susikuriamos atitinkamų komponentų CSS bylos ir pasitikrinamas bendras vaizdas dar be kintamųjų.
         </li>
+        <li>Tuomet grįžtam į App.jsx ir useState huko pirmasis kintamasis 'prekes' pažymimas JSX kodo return sekcijoje esantis propsu tėviniam komponentui.<br>
+            div prekes={prekes}>div
+        </li>
+        <li>Tėvinio komponento funkcijos argumente Express/DB duomenų kintamasis nurodomas kaip savybė (aka propsas):<br>
+            function Table ( {prekes} )
+        </li>
+        <li>Po to formuojamas tėv. komponentas JSX'as su .map kiekvienam elementui 'item' išvedant vaikinį komponentą, kuriame nnustatomas jo propsas - masyvo elementas:<br>
+            {prekes.map( item => <TableRow key = {item.ID} item={item}></TableRow>) }<br>
+            key savybė turi imti unikalią identifikacinę savybę (šiuo atveju ID), kad galėtų atskirti vienarūšius komponentus tarpusavyje
+        </li>Po to vaikinio elemento propas (item) įkeliamas į jo funkcijos argumetą:<br>
+            function TableRow ( {item} )
         <li>Po to propso elementai sukeliami į jų vietas JSX'e:<br>
             div{item.kaina}div
-        </li>
-        <li>Sukurūs vieną komponentą jis gali būti padauginamas tėviname komponente imant įrašą iš DB ir naudojant .map metodą.<br>Tam reikia tėvinio komponento funkcijos argumente vėl nurodyti propsą (kito pav.).
         </li>
     </ol>
     <h2 id="irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</h2>
