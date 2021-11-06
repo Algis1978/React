@@ -52,8 +52,7 @@ useEffect( () => {
             <div className="area">
             <ZveriuSarasas visizverys={visizverys}></ZveriuSarasas>
             </div>
-            </div>
-            
+            </div>            
         </>
     );
 

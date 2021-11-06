@@ -41,6 +41,9 @@
         <li>
             <a href="#irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</a>
         </li>
+        <li>
+            <a href="#irasu-trynimas">Įrašų trynimo instrukcija</a>
+        </li>
             
             
             <a href="#NDexpress"></a>
@@ -172,7 +175,7 @@
         <li>Po to formuojamas tėv. komponentas JSX'as su .map kiekvienam elementui 'item' išvedant vaikinį komponentą, kuriame nnustatomas jo propsas - masyvo elementas:<br>
             {prekes.map( item => <TableRow key = {item.ID} item={item}></TableRow>) }<br>
             key savybė turi imti unikalią identifikacinę savybę (šiuo atveju ID), kad galėtų atskirti vienarūšius komponentus tarpusavyje
-        </li>Po to vaikinio elemento propas (item) įkeliamas į jo funkcijos argumetą:<br>
+        </li>Po to vaikinio komponento propsas (item) įkeliamas į jo funkcijos argumentą:<br>
             function TableRow ( {item} )
         <li>Po to propso elementai sukeliami į jų vietas JSX'e:<br>
             div{item.kaina}div
@@ -180,23 +183,86 @@
     </ol>
     <h2 id="irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</h2>
     <ol>
-        <li>Kiekvienai įvesties vertei sukuriamas steitas (šiuo atveju, jų objektas) komponento jsx byloje:<br>const [vertes, setVertes] = useState( {} )</li>
-        <li>Po to sukuriama kontrolės funkcija:<br>
+        <li>Sukuriamas įvedimo komponentas (jei reikia) ir jo CSS'as, importuojamas į App.jsx.
+        </li>
+        <li>Kiekvienai įvesties vertei sukuriamas steitas (šiuo atveju, jų objektas) komponento jsx byloje:<br>
+            const [prekes, setPrekes] = useState( {<br>
+                pavadinimas: "";<br>
+            } )<br>
+            Propso funkcijai nereikia, nes čia sukuriamas tuščias objektas, kuris užpildomas iš input'ų ir po to duomenys siunčiami į Express/DB.
+        </li>
+        <li>Po to ten pat sukuriama kontrolės funkcija:<br>
             const formControl = (e, what) => {<br>
                 const vertesCopy = {...vertes};<br>
                 vertesCopy[what] = e.target.value;<br>
-                setVertes (vertesCopy);}</li>  
+                setVertes (vertesCopy);}
+        </li>  
         <li>Toliau sukuriamas pačios formos HTML'as:<br>
-            <input type="text" value={vertes["Vardas"]} onChange={(e) => formControl(e, "Vardas")} required /></li> 
+            label for="pavadinimas">Pavadinimas</label><br>
+            input type="text" value={prekes["pavadinimas"]} onChange={(e) => formControl(e, "pavadinimas")}/><br>
+            Pabaigoje įdedamas mygtukas.
+        </li> 
         <li>App.jsx byloje susikuriama funkcija, kuri pasiųs naujus duomenis į duomenų bazės lentelę.<br>
-            const sukurti = vertes => {<br>
-                axios.post('http://localhost:3003/zveris', vertes)<br>
+            const sukurti = prekes => {<br>
+                axios.post('http://localhost:3003/prekes', e)<br>
                 .then (res => {<br>
                     setAtnaujinti(Date.now());<br>
-                    console.log(res.data) }) }</li>
-        <li>
-            
+                    console.log(res.data) }) }
         </li>
+        <li>^i funkcija nurodoma kaip įvedimo komponento propsas App.jsx byloje:<br>
+            Menu sukurti={sukurti}></Menu><br>
+            Ir tas propsas nurodomas įvedimo komponento funkcijos argumente:<br>
+            function Menu ( {sukurti} )
+        </li>
+        <li>Po to einama į Express .js bylą ir parašomas išsiuntimas:<br>
+            app.post('/prekes', (req, res) => {<br>
+                const sqlParaiska = `insert into prekes<br>
+                (pavadinimas, prekeskodas, kaina, paskuzsakymas, kiekis)<br>
+                values (?, ?, ?, ?, ?)`<br>
+                sasaja.query(sqlParaiska, [ <br>
+                  req.body[pavadinimas],<br>
+                  req.body[prekeskodas],<br>
+                  req.body[kaina],<br>
+                  req.body[paskuzsakymas],<br>
+                  req.body[kiekis]<br>
+                ], (err, results) => {<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)} <br>
+                })})
+        </li>
+        <li>Po to įvedimo komponento mygtuke onClick atveju įvedama nauja funkcija:<br>
+            <button className="accordion" onClick= {handleSukurti}>Patvirtinkite</button>
+        </li>
+        <li>Ši funkcija nurodoma ten pat prieš return sekciją, kad onClick atveju iššauktų funkciją 'sukurti', kurios argumentu nurodytas įvestų duomenų objektas:<br>
+            const handleSukurti = () => {<br>
+                sukurti(prekes) }
+        </li>
+        <li>Po to reikalinga, kad duomenų atnaujinimas būtų automatiškai pavaizduojamas (be reload) JSX'se. Tam sukuriamas steitas, kuris seka laiko pasikeitimus realiu laiku App.jsx byloje:<br>
+            const [laikas, setLaikas] = useState (Date(now))<br>
+            Po to realaus laiko nustatymas užfiksuojamas funkcijoje 'sukurti', kai jinai yra iššaukiama ('post', nusiunčiami duomenys):<br>
+            const sukurti = prekes => {<br>
+                axios.post('http://localhost:3006/prekes', prekes)<br>
+                .then (res => {<br>
+                setAtnaujinti(Date.now());}<br>
+            Ir steitas nurodomas 'get' funkcijos antrajame argumente. Pasikeitus argumentui, 'get' iššaukiamas parsisiųsti duomenis iš DB.<br>
+            useEffect( () => {<br>
+                axios.get('http://localhost:3006/prekes')<br>
+                .then (res => {<br>
+                    setPrekes(res.data)<br>
+                })}, [laikas])
+        </li>
+        <li>Norint grąžinti įvedimo formos pradinę būseną (be suvedimo duomenų), paimami pradinės būsenos nustatymai ir įterpiami po 'sukurti' komandos iššaukimo komponente:<br>
+            const handleSukurti = () => {<br>
+                sukurti(prekes)<br>
+                setPrekes ({<br>
+                    pavadinimas: "",<br>
+                })<br>
+            }
+        </li>
+    </ol>
+    <h2 id="irasu-trynimas">Įrašų trynimo instrukcija</h2>
+    <ol>
+        <li></li>
     </ol>
 </body>
 </html>
