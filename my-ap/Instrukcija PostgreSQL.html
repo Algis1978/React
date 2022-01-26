@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PostgreSQL vadovas</title>
+    <style>
+        body {
+            padding:16px;
+        }
+        h1, h2 {
+            color: rgb(8, 101, 101);
+        }
+        h3 {
+            color: white;
+            background-color: darkgreen;
+            padding: 6px;
+            border-radius: 12px;
+            width: fit-content;
+        }
+        h4 {
+            color: white;
+            background-color: rgb(6, 68, 6);
+            padding: 6px;
+            border-radius: 8px;
+            width: fit-content;
+        }
+        ul li a {
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: azure;
+            background-color: darkblue;
+            padding:4px;
+            border-radius: 8px;;
+        }
+        ul li {
+            color: darkblue;
+            padding:6px;
+            font-size: large;
+        }
+    </style>
+</head>
+<body>
+    <h1>PostgreSQL vadovas</h1>
+    <h2>Turinys</h2>
+    <ul>
+        <li>
+            <a href="#DBgeneral">Veiksmai su DB</a> 
+        </li>
+        <li>
+            <a href="#DTgeneral">Veiksmai su DT</a> 
+        </li>
+        <li>
+            <a href="#DTrinkimas">Duomenų išrinkimas</a>
+        </li>
+        <li>
+            <a href="#DTgrupavimas">Duomenų rikiavimas, funkcijos, grupavimas</a>
+        </li>
+        <li>
+            <a href="#DCaritmetika">Duomenų ketimas</a>
+        </li>
+        <li> 
+            <a href="#steito-parasymas">Steito parašymas</a>
+        </li>
+        <li>
+            <a href="#irasu-redagavimas">Įrašų redagavimo instrukcija su modalu</a>
+        </li>
+        <li>
+            <a href="#irasu-trynimas">Įrašų trynimo instrukcija</a>
+        </li>
+        <li>
+            <a href="#irasu-filtravimas">Įrašų filtravimas</a>
+        </li>
+        <li>
+            <a href="#irasu-rusiavimas">Įrašų rūšiavimas</a>
+        </li>       
+    </ul>
+    <h3 id="DBgeneral">Veiksmai su DB</h3>
+    
+    <ul>
+        <li>Pasileidžiama ''SQL Shell (psql)'' programa</li>
+        <li>Prisijungiama prie esamo vartotojo 'postgres' DB 'postgres' su programos įdiegimo slaptažodžiu.</li>
+        <li>Parodo esamas DB: \l</li>
+        <li>Naujo vartotojo sukūrimas <a href="https://www.guru99.com/postgresql-create-alter-add-user.html#2">guru99.com</a></li>
+        <li>Naujos DB sukūrimas: create database DBpav;</li>
+        <li>DB ištrynimas: drop database DBpav;</li>
+        <li>Persijungiama prie kitos DB: \c DBpav;</li>
+        <li>Lentelių sąrašas: \dt</li>
+        <li>DB objektų sąrašas: \d arba \d+</li>
+        <li>DT savybių peržiūra: \d DTpav</li>
+        <li>Shell įrašų ištrynimas: \! cls</li>
+    </ul>
+    <h3 id=DTgeneral>Veiksmai su DT</h3>
+    <ul>
+        <li>Prieš įvedant duomenis reikalinga nurodyti jų verčių tipus: <a href="https://www.postgresql.org/docs/9.5/datatype.html">PostgresSQL.org</a></li>
+        <li>Lentelės sukūrimas: create table DTpav (ID smallserial not null primary key, DCpav2 Dtyp2, ...);</li>
+        <li>Lentelės ištrynimas: drop table DTpav;</li>
+        <li>Įrašo įvedimas: insert into DTpav (DCpav1, DCpav2...) values ('DV', 'DV'...);
+        </li>   
+    </ul>
+    <h3 id=DTrinkimas> Duomenų išrinkimas</h3>
+    <ul>
+        <li>Visų duomenų išrinkimas:<br> select * from DTpav;</li>
+        <li>Stulpelio (-ių) duomenų išrinkimas:
+            <br> select DC1 (, DC2...) from DTpav;</li>
+        <li>Duomenų eilučių išrinkimas pagal kriterijų:
+            <br> select * from DTpav where DCpav='DV'</li>
+        <li>Duomenų eilučių celių išrinkimas pagal kriterijų su WHERE:
+            <br> select DC1 (, DC2...) from DTpav where DCpav='DV'
+            <br><small>Celės pavaizduojamos ta tvarka kuria užrašytos užklausoje</small>
+        </li>
+        <li>Duomenų išrinkimas pagal teksto fragmentą su LIKE:<br> select * from DTpav where DCpav like '%as'
+            <br><small>Čia % reiškia bet kokius simbolius, _ - reiškia vieną bet kokį simbolį, ILIKE ignoruoja didžiąsias/mažąsias raides</small>
+            <br>select * from DTpav where DCpav ilike '___as';</li>
+        <li>Duomenų išrinkimas naudojant matematinius palyginimo operatorius &lt;, >, &lt;>, &lt;=, >=:
+            <br>select * from DTpav where DCatlyginimas&lt;>1000;</li>
+        <li>Duomenų išrinkimas naudojant kelias sąlygas su AND ir OR operatoriais:
+            <br>select * from DTpav where DCatlyginimas&lt;'1000' or DCatlyginimas>'1500';
+            <br>select * from DTpav where DCatlyginimas&lt;'1000' and DCvardas ilike '%as';</li>
+        <li>Duomenų išrinkimui kelias sąlygas galima jungti skliaustais:
+            <br>select * from DTpav where (DCatlyginimas&lt;'1000' or DCatlyginimas>'1500') and vardas ilike 'Mar%';
+        </li>
+        <li>Duomenų išrinkimas su keliais vienodais kriterijais naudojant WHERE DCpav IN:
+            <br>select * from DTpav where DCpav in (DCpav1, DCpav2...)
+        </li>
+        <li>Duomenų išrinkimas reikšmių intervale su WHERE DCpav BETWEEN:
+            <br>select * from DTpav where DCpav between DV1 and DV2;
+            <br><small>Duomenų grupės iškart keliuose reikšmių intervaluose:</small>
+            <br>select * from DTpav where DCpav between DV1 and DV2 or DCpav between DV1 and DV2;
+        </li>
+        <li>Tik skirtingų duomenų išrinkimas su DISTINCT:
+            <br>select distinct DCpav from DTpav;
+            <br><small>select distinct * from DTpav lygus visų duomenų pavaizdavimui.</small>
+        </li>
+        <li>Tik skirtingų duomenų išrinkimas su GROUP BY (lygus DISTINCT):
+            <br>select DCpav from DTpav group by DCPav;
+            <br><small>GROUP BY kriterijus turi būti iš pradžių parenkamas.</small>
+            <br><small>GROUP BY naudojamas su funkcijomis parodyti įrašų skaičiui.</small>
+        </li>
+    </ul>
+    
+    <h3 id=DTgrupavimas> Duomenų rikiavimas, grupavimas, funkcijos</h3>
+    <ul>
+        <li>Duomenų rikiavimas su ORDER BY:
+            <br> select * from DTpav order by DCpav;
+            <br><small>Pagal nutylėjimą rikiuojama didėjančia tvarka. Teksto atveju įvertinamas pirmųjų raidžių kodas.<br> Norint rikiuoti mažėjimo tvarka gale pridedamas raktažodis DESC, didėjimo raktažodis ASC.</small>
+            <br> select * from DTpav order by DCpav desc;
+            <br><small>Galima rikiuoti pagal kelis stulpelius, bet tai neturi daug logikos.</small>
+        <li>Tik riboto kiekio išrinktų pirmųjų duomenų grupavimas su LIMIT:
+            <br>select * from DTpav limit 5;
+        </li>
+        <li>Tik riboto kiekio išrinktų duomenų nuo nurodytos pozicijos grupavimas su OFFSET ir LIMIT:
+            <br>select * from DTpav offset 3 limit 5;
+            <br><small>OFFSET praleis nurodytą skaičių duomenų</small>
+            <br><small>OFFSET ir LIMIT operatoriai rašomi po kitų išrinkimo operatorių:</small>
+            <br>select * from DTpav where DCatlyginimas>'1000' offset 2 limit 3;
+            <br><small>OFFSET ir LIMIT rašomi po rikiavimo operatoriaus ORDER BY. T. y., duomenys išrenkami, surikiuojami, o po to pateikiama jų grupė su OFFSET ir LIMIT:</small>
+            <br>select DCpav1, DCpav2... from DTpav where DCatlyginimas >='1000' order by DCpav offset 2 limit 3;
+        </li>
+        <li>FETCH FIRST 'skaičius' ROW ONLY atlieka tą patį, ką LIMIT:
+            <br>select * from DTpav fetch first 5 row only;
+        </li>
+        <li>Duomenų suskaičiavimas su COUNT():
+            <br>select count(*) from DTpav;
+        </li>
+        <li>Tik skirtingų duomenų suskaičiavimas su COUNT():
+            <br>select count(distinct DCpav) from DTpav;
+        </li>
+        <li>Duomenų skaičiavimas su sąlyga:
+            <br>select count(distinct DCpav) from DTpav where DCskaicius>'1000';
+        </li>
+        <li>Mažiausios ir didžiausios verčių duomenų suradimas su MIN() ir MAX():
+            <br> select max(DCskaicius) from DTpav;
+            <br> Kitų duomenų su mažiausia ar didžiausia verte suradimas:
+            <br>select * from DTpav where DCskaicius = (select min(DCskaicius) from DTpav);
+            <br><small>Pastaba. Celės be duomenų (null) yra ignoruojamos.</small>
+        </li>
+        <li>Suminės ir vidutinės verčių duomenų suradimas su SUM() ir AVG():
+            <br>select sum(DCpav) from DTpav;
+            <br>Vidutinę vertę įvedus į ROUND funkciją galima suapvalinti rezultatą nurodant skaičių po kablelio (antras argumentas):
+            <br>select round( avg(DCpav), 2 ) from DTpav;
+            <br><small>Pastaba. Celės be duomenų (null) yra ignoruojamos.</small>
+        </li>
+        <li>GROUP BY leidžia suskirstyti objektus į grupes pagal kriterijų ir tose grupėse rasti specifinius duomenis pagal funkcijas.
+            <br>Sukuriamos grupės su vienodomis celės vertėmis:
+            <br>select DCpav from DTpav group by DCpav;
+            <br>Surandamos funkcijų vertės kiekvienoje iš grupių:
+            <br>select DCpav, min(DCpavx), max(DCpavx), count(DCpavx)... from DTpav group by DCpav;
+        </li>
+        <li>HAVING leidžia patikslinti rezultatus po GROUP BY naudojant kriterijus:
+            <br> select DCpav, min(DCpavx), max(DCpavx), count(DCpavx)... from DTpav group by DCpav having count(DCpavx)>'skaicius';
+            <br> select DCpav, min(DCpavx), max(DCpavx), count(DCpavx)... from DTpav group by DCpav having DCtekstas = '%as';
+        </li>
+    </ul>
+
+    <h3 id=DCaritmetika> Duomenų keitimas</h3>
+    <ul>
+        <li>Skaičių duomenys gali būti keičiami aritmetiniais operatoriais +, -, *, /, ^, %:
+            <br>select DCskaicius * 5, DCskaicius / .2 from DTpav;
+        </li>
+        <li>Naujų stulpelių pavadinimų įvedimas su AS operatoriumi:
+            <br>select DCskaicius * as pirmas_stulpelis, DCskaicius / .2 as antras_stulpelis from DTpav;
+        </li>
+        <li>Kelių stulpelių duomenų pateikimas viename su CONCAT():
+            <br>select concat(DCpav1, DCpav2, ', '...) from DTpav;
+            <br><small>Pastaba. Papildomi simboliai įterpiami tarp ' ir '.</small>
+        </li>
+        <li>Nesančių verčių keitimas standartine su COALESCE():
+            <br> select coalesce (DCpav, 'vertė') from DTpav;
+            <br><small>Pastaba. Coalesce pakeis stulpelio pavadinimą. Jį galima perkeisti su AS operatoriumi.</small>
+        </li>
+    </ul>
+    
+
+</body>
+</html>

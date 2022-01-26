@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            padding:16px;
+        }
+        h1, h2 {
+            color: rgb(8, 101, 101);
+        }
+        ul li a {
+            font-size: 1.2rem;
+            text-decoration: none;
+            color: azure;
+            background-color: darkblue;
+            padding:4px;
+            border-radius: 8px;;
+        }
+        ul li {
+            color: darkblue;
+            padding:8px;
+        }
+    </style>
+    <script>
+        let a=(new Array("test",1,2,3,-1,-2,-3,0xFFFFF)).sort()
+console.log(a)
+var x = 10;
+    var y = ++x   +   x++ ;
+      console.log(y);
+      var status = "false";
+    if(status)
+        console.log("Active");
+    else
+          console.log("Blocked");
+    </script>
+</head>
+<body>
+    <p>BLAH</p>
+    <h2>Turinys</h2>
+    <ul>
+        <li>
+            <a href="#NDexpress">Node Express sukūrimo instrukcija</a> 
+        </li>
+        <li>
+            <a href="#react-express">Duomenų bazės sujungimo su React ir Node Express instrukcija</a>
+        </li>
+        <li>
+            <a href="#irasu-pavaizdavimas">Duomenų bazės įrašų pavaizdavimas</a>
+        </li>
+        <li>
+            <a href="#irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</a>
+        </li>
+        <li> 
+            <a href="#steito-parasymas">Steito parašymas</a>
+        </li>
+        <li>
+            <a href="#irasu-redagavimas">Įrašų redagavimo instrukcija su modalu</a>
+        </li>
+        <li>
+            <a href="#irasu-trynimas">Įrašų trynimo instrukcija</a>
+        </li>
+        <li>
+            <a href="#irasu-filtravimas">Įrašų filtravimas</a>
+        </li>
+        <li>
+            <a href="#irasu-rusiavimas">Įrašų rūšiavimas</a>
+        </li>
+            
+            
+            <a href="#NDexpress"></a>
+       
+    </ul>
+    <h2 id="NDexpress">Node Express sukūrimo instrukcija</h2>
+    <ol>
+        <li>Susikuriame serverio katalogą.</li>
+        <li>Jame reikia instaliuoti node (npm init, npm install), po to express, nodemon, mysql, cors<br></li>
+        <li>Serverio JSON bylos "script"uose įvedama komanda "start": "nodemon index.js".<br>  Po to susikuriama atitinkama index.js byla ir joje suvedami moduliai:<br>
+            const express = require('express')<br>
+            const mysql = require('mysql')<br>
+            const cors = require('cors')
+        </li>
+        <li>Nurodoma naudoti express moduli ir portą:<br>
+            const app = express()<br>
+            const port = 3006<br>
+        </li>
+        <li>Nurodoma serveriui atsiliepti  į užklausas per nurodytą portą:<br>
+            app.listen(port, () => { <br>
+            console.log(`Example app listening at http://localhost:${port}`)<br>
+            })<br>
+        </li>
+        <li>app.get grąžina turinį į užklausas, šiuo atveju į blank:<br>
+            app.get('/', (req, res) => {<br>
+              res.send('Hello World!')<br>
+            })
+        </li>
+        <li>Įvedami nustatymai sąsajai su duomenų baze (DB serveris tur būti paleistas):<br>
+            const sasaja = mysql.createConnection({ <br>
+                host: "localhost",<br>
+                user: "root",<br>
+                database: "prekiu_krepselis",<br>
+                password: "root" <br>
+              });
+        </li>
+        <li>Sukuriama sąsaja su DB:<br>
+            sasaja.connect(function(err) {<br>
+                if (err) throw err;<br>
+                console.log("Connected!");<br>
+              });
+        </li>
+        <li> Aktyvuojamas cors:<br>
+            app.use(cors());
+        </li>
+        <li>Ši komanda įgalina atpažinti siunčiamą informaciją kaip tekstą ar masyvą:<br>
+            app.use(express.urlencoded({<br>
+                extended: true<br>
+                }))
+        </li>
+        <li>Nurodo automatiškai perskaityti JSON informaciją:<br>
+            app.use(express.json());
+        </li>
+        <li>Patikrina JSON perskaitymo veikimą:<br>
+            app.get('/JSONtest', (req, res) => { <br>
+                res.send(JSON.stringify({JSONtest: 'Viskas OK'}))<br>
+              })
+        </li>
+        <li>Prisijungimas prie konkrečios DB lentelės:<br>
+            app.get('/prekes', (req, res) => {<br>
+                const sqlUzklausa = `select * from prekes`<br>
+                sasaja.query(sqlUzklausa, (err, results) =>{<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)} <br>
+                }) })
+        </li>
+    </ol>
+    <h2 id="react">React projekto parašymas</h2>
+    <ol>
+        <li>Įdiegiamas react su 'npx create-react-app katalogas' komanda komandinėje eilutėje pasirinktame kataloge, susikuriamas React App.jsx byla su bandomuoju įrašu, pvz., <h1>Hey Go!</h1><br>
+            JSX yra 'JavaScript XML' trumpinys.
+        <!-- </li> -->
+        <li>Įdiegiama Axios biblioteka (galima naudoti JS Fetch API su JS)<br>su 'npm install axios'.</li>
+        <li>Galima instaliuoti sass, jei jis bus naudojamas su 'npm install node-sass'. Tokiu aveju reikia pervadinti .css tipo bylas į .scss tipus.</li>
+    </ol>
+    <h2 id="react-express">Duomenų bazės sujungimo su React ir Node Express instrukcija</h2>
+    <ol>
+        <li>Susikuriama duomenų bazė</li>
+        <br>Įterpiamas į App.jsx su 'import axios from "axios"'.<br>Axios reikalingas React susijungimui su Express serveriu.</li>
+        <li>Pasileidžiamas React serveris ('npm start').<br> Paleidžiamas Express serveris (npm start)<br> Serveryje turi rodyti 'connected!'
+        </li>
+        <li>useEffect hukas naudojamas šiam kreipimuisi. App.jsx byloje įvedami hukų importai (kadangi useState vistiek reikės):<br>
+            import { useEffect, useState } from "react"
+        </li>
+        <li>UseEffect Įvedamas į App funkcijos kūną.<br>
+        Pirmas jo argumentas - funkcija, antras - tuščias masyvas, kuris rodo, kad useEffect bus aktyvuota vieną kartą.<br>
+        Su axios krepiamasi į kitą serverį ir į konkretų puslapį.<br>
+        Grąžinamas res.data yra tik duomenys, nes tik jų reikia.<br>
+        useEffect( () => {<br>
+            axios.get('http://localhost:3003/JSONtest')<br>
+            .then (res => {<br>
+                console.log(res.data)<br>
+            })}, []) </li>
+        <li>Po to reikalingi du 'powershell' terminalai.<br>
+        Iš vieno pasileidžiamas React, iš kito - Express serveriai.</li>
+        <li>Toliau sukuriame užklausą serverio index.js byloje į duomenų bazės lentelę 'prekes' - tam naršyklės užklausoje nurodomas '/prekes' kelias:<br>
+            app.get('/prekes', (req, res) => {<br>
+                const sqlUzklausa = `select * from zveris`</b>
+                sasaja.query(sqlUzklausa, (err, results) =>{<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)}  }) })<br>
+            Čia 'sqlUzklausa' yra kreipimosi turinys, o 'sasaja.query' ją persiunčia, 'res.send' grąžina rezultatą naršyklei.<br>
+            Papildomai pasitikrinti 'sasaja' aprašyme, ar nurodyta duomenų bazė ('prekiu_krepselis' šiuo atveju).
+        </li>
+        <li>Po to atitinkamai pakeičiamas kelias React serveryje:<br>
+            axios.get('http://localhost:3003/prekes')<br>
+            Pasitikriname react aplikacijos konsolėje, ar gaunami duomenys.</li>
+        <li>Naršyklės 'Network' kortelėje galima matyti sąsajos procesus.</li>  
+    </ol>
+    <h2 id="irasu-pavaizdavimas">Duomenų bazės įrašų pavaizdavimas</h2>
+    <ol>
+        <li>React'o App.jsx byloje importuojamas useState hukas:<br>
+            import {useEffect, useState} from "react"<br>
+            Jį galima buvo importuoti iš pat pradžių.
+        </li>
+        <li>Po to useState hukas panaudojamas su paimamo masyvo duomenimis ten pat(App kūne):<br>
+            const [prekes, setPrekes] = useState ([])<br>
+            Čia useState argumente nurodoma pradinė steito 'prekes' būsena, šiuo aveju tuščias masyvas.<br>
+            Steito pavadinimas pasirenkamas laisvai.
+        </li>
+        <li>Po to useEffect huko viduje po .then usePrekes prisikiriamas masyvo duomenys iš Express serverio (ir DB tuo pačiu):<br>
+            .then (res => {<br>
+            setPrekes = res.data})<br>
+            Taip pakeičiamas steitas iš tuščio masyvo į masyvą iš Express serverio atsakymo į užklausą. Tai vyksta suveikus useEffect hukui, kuris suveikia vieną kartą.
+        </li>
+        <li>Susikuriami komponentai, kuriuose formuojamas JSX vaizdas 'return' skiltyje:<br>
+            export default function Table () {<br>
+            return (div>/div>) }
+        </li>
+        <li>React App.jsx byloje importuojamas tėvinis pavaizdavimo komponentas:<br>
+            import component from "./Components/component"
+        </li>
+        <li>Vaikinis komponentas gali būti padauginamas tėviname komponente imant duomenis iš Express/DB ir naudojant .map metodą.<br> Vaikinis komponentas importuojamas tėv. komponente.:<br>
+            import Vaikkomp from "./Components/VaikKomp"<br>
+        </li>
+        <li>Susikuriamos atitinkamų komponentų CSS bylos ir pasitikrinamas bendras vaizdas dar be kintamųjų.
+        </li>
+        <li>Tuomet grįžtam į App.jsx ir useState huko pirmasis kintamasis 'prekes' pažymimas JSX kodo return sekcijoje esantis propsu tėviniam komponentui.<br>
+            div prekes={prekes}>div
+        </li>
+        <li>Tėvinio komponento funkcijos argumente Express/DB duomenų kintamasis nurodomas kaip savybė (aka propsas):<br>
+            function Table ( {prekes} )
+        </li>
+        <li>Po to formuojamas tėv. komponentas JSX'as su .map kiekvienam elementui 'item' išvedant vaikinį komponentą, kuriame nnustatomas jo propsas - masyvo elementas:<br>
+            {prekes.map( item => /TableRow key = {item.ID} item={item}></TableRow>) }<br>
+            key savybė turi imti unikalią identifikacinę savybę (šiuo atveju ID), kad galėtų atskirti vienarūšius komponentus tarpusavyje
+        </li>Po to vaikinio komponento propsas (item) įkeliamas į jo funkcijos argumentą:<br>
+            function TableRow ( {item} )
+        <li>Po to propso elementai sukeliami į jų vietas JSX'e:<br>
+            div{item.kaina}div
+        </li>
+    </ol>
+    <h2 id="irasu-ivedimas">Įrašų įvedimo iš React į duomenų bazę instrukcija</h2>
+    <ol>
+        <li>Sukuriamas įvedimo komponentas (jei reikia) ir jo CSS'as, importuojamas į App.jsx.
+        </li>
+        <li>Kiekvienai įvesties vertei sukuriamas steitas (šiuo atveju, jų objektas) komponento jsx byloje:<br>
+            const [prekes, setPrekes] = useState( {<br>
+                pavadinimas: "";<br>
+            } )<br>
+            Propso funkcijai nereikia, nes čia sukuriamas tuščias objektas, kuris užpildomas iš input'ų ir po to duomenys siunčiami į Express/DB.
+        </li>
+        <li>Po to ten pat sukuriama kontrolės funkcija:<br>
+            const formControl = (e, what) => {<br>
+                const prekesCopy = {...prekes};<br>
+                prekesCopy[what] = e.target.value;<br>
+                setPrekes (prekesCopy);}
+        </li>  
+        <li>Toliau sukuriamas pačios formos HTML'as:<br>
+            label for="pavadinimas">Pavadinimas</label><br>
+            input type="text" value={prekes["pavadinimas"]} onChange={(e) => formControl(e, "pavadinimas")}/><br>
+            value čia reikalinga duomenų nuresetinimui input laukeliuose po įvedimo.<br>
+            Pabaigoje įdedamas mygtukas.
+        </li> 
+        <li>App.jsx byloje susikuriama funkcija, kuri pasiųs naujus duomenis į duomenų bazės lentelę.<br>
+            const sukurti = prekes => {<br>
+                axios.post('http://localhost:3003/prekes', prekes)<br>
+                .then (res => {<br>
+                    setLaikas(Date.now());<br>
+                    console.log(res.data) }) }
+        </li>
+        <li>Ši funkcija nurodoma kaip įvedimo komponento propsas App.jsx byloje:<br>
+            Menu sukurti={sukurti}></Menu><br>
+            Ir tas propsas nurodomas įvedimo komponento funkcijos argumente:<br>
+            function Menu ( {sukurti} )
+        </li>
+        <li>Po to einama į Express .js bylą ir parašomas išsiuntimas:<br>
+            app.post('/prekes', (req, res) => {<br>
+                const sqlParaiska = `insert into prekes<br>
+                (pavadinimas, prekeskodas, kaina, paskuzsakymas, kiekis)<br>
+                values (?, ?, ?, ?, ?)`<br>
+                sasaja.query(sqlParaiska, [ <br>
+                  req.body[pavadinimas],<br>
+                  req.body[prekeskodas],<br>
+                  req.body[kaina],<br>
+                  req.body[paskuzsakymas],<br>
+                  req.body[kiekis]<br>
+                ], (err, results) => {<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)} <br>
+                })})
+        </li>
+        <li>Po to įvedimo komponento mygtuke onClick atveju įvedama nauja funkcija:<br>
+            button className="accordion" onClick= {handleSukurti}>Patvirtinkite</button><br>
+            handle čia reikalinga, nes papildomai bus įterpiamas pradinis duomenų steitas.
+        </li>
+        <li>Ši funkcija nurodoma ten pat prieš return sekciją, kad onClick atveju iššauktų funkciją 'sukurti', kurios argumentu nurodytas įvestų duomenų objektas:<br>
+            const handleSukurti = () => {<br>
+                sukurti(prekes) }
+        </li>
+        <li>Po to reikalinga, kad duomenų atnaujinimas būtų automatiškai pavaizduojamas (be reload) JSX'se. Tam sukuriamas steitas, kuris seka laiko pasikeitimus realiu laiku App.jsx byloje:<br>
+            const [laikas, setLaikas] = useState (Date(now))<br>
+            Po to realaus laiko nustatymas užfiksuojamas funkcijoje 'sukurti', kai jinai yra iššaukiama ('post', nusiunčiami duomenys):<br>
+            const sukurti = prekes => {<br>
+                axios.post('http://localhost:3006/prekes', prekes)<br>
+                .then (res => {<br>
+                setLaikas(Date.now());}<br>
+            Ir steitas nurodomas 'get' funkcijos antrajame argumente. Pasikeitus argumentui, 'get' iššaukiamas parsisiųsti duomenis iš DB.<br>
+            useEffect( () => {<br>
+                axios.get('http://localhost:3006/prekes')<br>
+                .then (res => {<br>
+                    setPrekes(res.data)<br>
+                })}, [laikas])
+        </li>
+        <li>Norint grąžinti įvedimo formos pradinę būseną (be suvedimo duomenų), paimami pradinės būsenos nustatymai ir įterpiami po 'sukurti' komandos iššaukimo komponente:<br>
+            const handleSukurti = () => {<br>
+                sukurti(prekes)<br>
+                setPrekes ({<br>
+                    pavadinimas: "",<br>
+                })<br>
+            }
+        </li>
+    </ol>
+    <h2 id="steito-parasymas">Steito parašymas</h2>
+    <ol>
+        <li>Iš useState huko paimami du kintamieji, iš kurių vienas yra kintamoji vertė, o antrasis yra funkcija, kuri nustato pirmojo vertę.<br>
+            UseState huko argumente nurodoma esama ar pirminė kintamojo vertė.<br>
+            const [modalOnA, setModalOnA] = useState (false)
+        </li>
+        <li>Parašoma funkcija, kurią iššaukus bus pakeista steito kintamojo vertė:<br>
+            const modalAcontrol = () => {<br>
+                setModalOnA(true)}
+        </li>
+        <li>Pradinė steito vertė perduodama į komponento, kur keis savybę, propsus:<br>
+            PrekesAddMod modalOnA={modalOnA}/><br>
+            Ir nustatoma reikiamoje vietoje komponento JSXe, pvz., stiliaus parametruose:<br>
+            style={{display: modalOnA?"block":"none"}}
+        </li>
+        <li>Funkcija perduodama į reikiamų komponentų propsus.<br>
+            Sukuriama funkcija, kuri įves reikiamą argumentą:<br>
+            const setModalAcontrol = ()=> {<br>
+                modalAcontrol(true)}<br>
+            Kuri po to pririšama prie įvykių:<br>
+            onClick={ setModalAcontrol }
+        </li>
+        <li>Šis propsas perduodamas tarp komponento funkcijos argumentų:<br>
+
+        </li>
+    </ol>
+    <h2 id="irasu-redagavimas">Įrašų redagavimo instrukcija su modalu</h2>
+    <ol>
+        <li>Susikuriamas red. mygtukas reikiamoje vietoje komponente.</li>
+        <li>Sukuriamas redagavimo lango komponentas (gali būti toks pat kaip komponento, arba sukūrimo komponento)</li>
+        <li>Pasirašomas steitas App.jsx'e, kuris seks atskiro  Express/DB įrašo pasikeitimą su pradiniais duomenimis. Tai yra pradinii duomenų nustatymas:<br>
+            const [redaguotiData, setRedaguotiData] = useState ({<br>
+                ID: "",<br>
+                pavadinimas: "",<br>
+                ...<br>
+            })
+        </li>
+        <li>Paasirašomas steitas, kuris seks, ar bus rodomas redagavimo langas, ar ne:<br>
+            const [redaguotiOn, setRedaguotiOn] = useState (false)
+        </li>
+        <li>Tuomet parašoma redagavimo/trynimo lango iššaukimo funkcija apimant Express/DB eilutės duomenis kaip argumentą App.jsx'e:<br>
+            const modalRcontrol = (raktas, redaguotiData) => {<br>
+                setRedaguotiOn(false)<br>
+                if (raktas) {setRedaguotiOn(true); setRedaguotiData(item)}
+            }</li>
+        <li>Norint perduoti pradinius duomenis į redagavimo formą, reikia iššaukiant redagavimo langą, kartu argumentu pateikti šiuos duomenis, kurie yra vienos Express/DB eilutės įrašas:<br>
+            const setModalRcontrol = (item) => <br>{
+                modalRcontrol(true, item)<br>
+            }<br>
+            Ši komanda sukuriama App.jsx'e.<br> 
+        </li>
+        <li>Toliau vykdomas perdavimas į propsus:<br>
+            modalRcontrol - ten, kur yra mygtukai, iššaukiantys arba uždarantys redagavimo langą,<br>
+            redaguotiOn - į redagavimo langą, kad nustayti pradin būseną (false):<br>
+                style={{display: redaguotiOn?"block":"none"}}<br>
+            redaguotiData - į redagavimo langą, kur bus įrašomi.
+        </li>
+        <li>modalRcontrol priskiriamas redagavimo lango atidarymo mygtukui pagrindinėje kortelėje (duomenų komponente):<br>
+            onClick={()=> modalRcontrol(true, item)}<br>
+            Kur item yra esamų duomenų objektas (jis turi būti pgr. kortelės propsuose)
+        </li>
+        <li>Redagavimo/trynimo komponente sukuriamas kintančių duomenų steitas:<br>
+            const [prekes, setPrekes] = useState({<br>
+                ID: "",<br>
+                pavadinimas: "",<br>
+                ...<br>
+            })<br>
+            Pastaba. Jam būtinas nurodyti eilutės ID (Įrašo sukūrimui nereikėjo, nes ID automatinis).<br>
+            Pastaba. Komponente įvedami useState ir useEffect hukai.
+        </li>
+        <li>Toliau parašomas useEffect hukas, kuris iššaukia aukštesnio steito nustatymo funkcija ir antru argumentu pateikia paduodamą duomenų eilutę:<br>
+            useEffect (()=> {<br>
+                setPrekes ({<br>
+                    ID: redaguotiData.ID,<br>
+                    pavadinimas: redaguotiData.pavadinimas,<br>
+                    ...<br>
+            })}, [redaguotiData])<br>
+        Tokiu atveju, pasikeitus Express/DB eilutei, useEffect pakeis formos default duomenis eilutės duomenimis vieną kartą.
+        </li>
+        <li>Toliau komponente įvedama formControl funkcija, kuri sukuria duomenų kopiją ir į ją perduoda input laukelių informaciją. Po to ši kopija perduodama į kintančių duomenų steitą (tampa naujais formos duomenimis)<br>
+            const formControl = (e, what) => {<br>
+                const prekesCopy = {...prekes};<br>
+                prekesCopy[what] = e.target.value;<br>
+                setPrekes (prekesCopy);<br>
+            }
+        </li>
+        <li>Po to komponente sukuriami input laukeliai, kurie priims duomenis ir jiems pasikeitus iššauks formControl funkciją ir nustatys naujus:<br>
+            input/ type="text" value={prekes["pavadinimas"]} onChange={(e) => formControl(e, "pavadinimas")}
+        </li>
+        <li>App.jsx byloje sukuriama funkcija 'pakeisti' su axios.put metodu ir papildomu ID argumentu:<br>
+            const pakeisti = (prekes, ID) => {<br>
+                axios.put('http://localhost:3006/prekes'+ID, prekes)<br>
+                .then (res => {<br>
+                    setLaikas(Date.now());<br>
+                    console.log(res.data) })<br>
+                }<br>
+        Ši funkcija perduodama į redagavimo komponento propsus.
+        </li>
+        <li>Pakeitimo mygtuko atributuose įvedamas funkcijos iššaukimas:<br>
+            onClick={handlePakeisti}<br>
+            Ir sukuriama funkcija aukščiau su red. duomenimis ir antruoju argumentu "ID":<br>
+            const handlePakeisti = () => {<br>
+                pakeisti ({<br>
+                    ID: prekes["ID"],<br>
+                    pavadinimas: prekes["pavadinimas"],<br>
+                    ...<br>
+                }, prekes["ID"])<br>
+            }
+        </li>
+        <li>Redagavimo komponento uždarumo mygtukui priskiriamas įvykis:<br>
+            onClick={()=> modalRcontrol(false)}
+        </li>
+        <li>Express serverio .js programoje parašoma komanda DB duomenų atnaujinimui:<br>
+            app.put('/prekes:ID', (req, res) => {<br>
+                const sqlParaiska = `<br>
+                update prekes<br>
+                set pavadinimas=?, prekeskodas=?, kiekis=?, kaina=?,<br> paskuzsakymas=?<br>
+                where ID=?<br>
+                `<br>
+                sasaja.query(sqlParaiska, [<br> 
+                  req.body["pavadinimas"],<br>
+                  req.body["prekeskodas"],<br>
+                  req.body["kiekis"],<br>
+                  req.body["kaina"],<br>
+                  req.body["paskuzsakymas"],<br>
+                  req.params["ID"]<br>
+                ], (err, results) => {<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)}<br> 
+                }) })<br>
+                Pastaba. Paraiškos argumentus reikia nurodyti tokia pačia tvarka kaip užklausos.
+        </li>
+    </ol>
+    <h2 id="irasu-trynimas">Įrašų trynimo instrukcija</h2>
+    <ol>
+        <li>App.jsx'e nukopijuojama redagavimo funkcija į trynimo, kuriai tereikės ID argumento ir 'axios.delete' metodo:<br>
+            const istrinti = (ID) => {<br>
+                axios.delete('http://localhost:3006/prekes'+ID)<br>
+                .then (res => {<br>
+                    setLaikas(Date.now());<br>
+                    console.log(res.data) })<br>
+                }
+        </li>
+        <li>Trynimo funkcija perduodama į reikiamo komponento propsus:</li>
+        <li>Komponento mygtuke sukuriamas onClick įvykis:<br>
+            onClick={() => istrinti(prekes["ID"])}<br>
+        Jame funkcijai perduodamas vienas argumentas, jau nustatyta aukščiau redagavimo funkcijai.</li>
+        <li>Express severio .js byloje įvedama trynimo užklausa:<br>
+            app.delete('/prekes:ID', (req, res) => {<br>
+                const sqlParaiska = `<br>
+                delete from prekes<br>
+                where ID=?<br>
+                `<br>
+                sasaja.query(sqlParaiska, [ <br>
+                  req.params["ID"]<br>
+                ], (err, results) => {<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)} <br>
+                }) })
+            </li>
+    </ol>
+    <h2 id="irasu-filtravimas">Įrašų filtravimas</h2>
+    <ol>
+        <li>Filtravimas vyks vykdant užklausas į express/DB.</li>
+        <li>Susikuriamas 'select' tipo mygtukas:<br>
+            <select><br>
+                <option>Rodyti:</option><br>
+              </select>
+        </li>
+        <li>Express .js byloje parašoma užklausa į DB su 'axios.get' metodu:<br>
+            app.get('/planet-tipas', (req, res) => {<br>
+                const sqlUzklausa = `select distinct tipas<br>
+                from planet`<br>
+                sasaja.query(sqlUzklausa, (err, results) =>{<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)}<br>
+            }) })<br>
+            Kur suformuota užklausa 'select distinct' išrenka pagal stulpelio 'tipas' raktinį parametrą.<br>
+            Pasitikrinti galima su 'localhost:3008/planet-tipas'.
+        </li>
+        <li>App.jsx'e parašomas steitas, pvz., šiuo atveju rodyti pagal tipą:<br>
+            const [pagalTipa, setPagalTipa] = useState ([])
+        </li>
+        <li>Jam parašomas atskiras useEffect hukas su užklausa į Express/DB:<br>
+            useEffect( () => {<br>
+                axios.get('http://localhost:3008/planet-tipas')<br>
+                .then (res => {<br>
+                    setPagalTipa(res.data)})<br>
+              }, [laikas])
+        </li>
+        <li>Gautas masyvas sumapinamas komponente į opcijas:<br>
+            select><br>
+                option>Pasirinkite tipą:/option><br>
+                {pagalTipa.map (planeta => option key={planeta.tipas} tipas={planeta.tipas}><br>{planeta.tipas}/option>)}<br>
+            /select>
+        </li>
+        <li>Pasirašomas select pasirinkimo steitas:<br>
+            const [tipas, setTipas] = useState ("")<br>
+        </li>
+        <li>Parašoma užklausa į DB, išrenkanti įrašus pagal parametrą (serverio js byla):<br>
+            app.get('/planet-pasirinkimas/:tipas', (req, res) => {<br>
+                const sqlUzklausa = `select *<br>
+                from planet<br>
+                where tipas = ?`<br>
+                sasaja.query(sqlUzklausa, [req.params.tipas], (err, results) =>{<br>
+                if (err) {console.log("Klaida");throw err}<br>
+                else {res.send(results)}<br>
+            }) })
+        </li>
+        <li>App.jsx'e parašomas naujas useEffect'as kreiptis tik įrašų pagal parametrą, kai jis pasikeičia:<br>
+            useEffect( () => {<br>
+                if (tipas) {<br>
+                  axios.get('http://localhost:3008/planet-pasirinkimas/'+tipas)<br>
+                    .then (res => {<br>
+                      setPlanetos(res.data)<br>
+                    })<br>
+                  } <br> 
+                }, [tipas])
+        </li>
+        <li>Parašomas steitas, kuris seks select vertės pasikeitimą:<br>
+            const [tipoVerte, setTipoVerte] = useState("")
+        </li>
+        <li>Įterpiame į select lauką sąvybes:<br>
+            select onChange={pasirinktiTipa} value={tipoVerte}>
+        </li>
+        <li>Po to parašome funkciją pasirinktiParametrą:<br>
+            const pasirinktiTipa = (planeta) => {<br>
+                setTipoVerte(planeta.target.value)<br>
+                setTipas(planeta.target.value)<br>
+              }
+        </li>
+    </ol>
+    <h2 id="irasu-rusiavimas">Įrašų rūšiavimas</h2>
+    <ol>
+
+    </ol>
+</body>
+</html>

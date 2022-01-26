@@ -5,7 +5,7 @@ import ZverisSukurti from "./Components/ZverisSukurti"
 import axios from "axios";
 
 function App() {
-
+    if (true) alert("Nelygu")
 const [visizverys, setVisizverys] = useState ([]);
     
     // cia reikalinga grazinimui atgal i html (atnaujinti)
