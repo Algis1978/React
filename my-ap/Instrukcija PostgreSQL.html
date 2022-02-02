@@ -81,23 +81,43 @@
     <ul>
         <li>Pasileidžiama ''SQL Shell (psql)'' programa</li>
         <li>Prisijungiama prie esamo vartotojo 'postgres' DB 'postgres' su programos įdiegimo slaptažodžiu.</li>
-        <li>Parodo esamas DB: \l</li>
+        <li>Esamų DB peržiūra: \l</li>
+        <li>Rolių peržiūra: \du </li>
         <li>Naujo vartotojo sukūrimas <a href="https://www.guru99.com/postgresql-create-alter-add-user.html#2">guru99.com</a></li>
         <li>Naujos DB sukūrimas: create database DBpav;</li>
         <li>DB ištrynimas: drop database DBpav;</li>
         <li>Persijungiama prie kitos DB: \c DBpav;</li>
         <li>Lentelių sąrašas: \dt</li>
         <li>DB objektų sąrašas: \d arba \d+</li>
-        <li>DT savybių peržiūra: \d DTpav</li>
         <li>Shell įrašų ištrynimas: \! cls</li>
+        <li>Shell uždarymas: \q</li>
     </ul>
     <h3 id=DTgeneral>Veiksmai su DT</h3>
     <ul>
-        <li>Prieš įvedant duomenis reikalinga nurodyti jų verčių tipus: <a href="https://www.postgresql.org/docs/9.5/datatype.html">PostgresSQL.org</a></li>
-        <li>Lentelės sukūrimas: create table DTpav (ID smallserial not null primary key, DCpav2 Dtyp2, ...);</li>
-        <li>Lentelės ištrynimas: drop table DTpav;</li>
-        <li>Įrašo įvedimas: insert into DTpav (DCpav1, DCpav2...) values ('DV', 'DV'...);
-        </li>   
+        <li>Prieš kuriant DT reikės nurodyti stulpelių duomenų tipus: <a href="https://www.postgresql.org/docs/9.5/datatype.html">PostgresSQL.org</a></li>
+        <li>DT sukūrimas: create table DTpav (ID smallserial not null primary key, DCpav2 Dtyp2, ...);</li>
+        <li>DT savybių peržiūra: \d DTpav</li>
+        <li>DT ištrynimas: drop table DTpav;</li>
+        <li>Įrašo įvedimas: 
+            <br>insert into DTpav (DCpav1, DCpav2...) values ('DV', 'DV'...);
+        </li>
+        <li>Įrašo ištrynimas:
+            <br>delete from DTpav where id = Vskaicius;
+            <br><small>Pastaba. Ištrynus ankstesnį id, eilutę su tokiu id galima sukurti iš naujo.</small>
+        </li> 
+        <li>Įrašų pakeitimas:
+            <br> update DTpav set DCpav = 'value' where DCpav = 'value';
+            <br><small>Keičiant konkrečios eilutės duomenis reikia nurodyti where kriterijumi id, kitu atveju keičiamos visos reikšmės (jei jų yra).</small>
+        </li>
+        <li>Lentelių jungimas.
+            <br>Pirmos lentelės (kairėje) eilučių jungimas su kitos su INNER JOIN pagal vienodus stulpelius:
+            <br>select * from DT1 join DT2 on DT1.id=DT2.id;
+            <br>LEFT JOIN įves visus pirmos DT įrašus, nepriklausomai, ar antra DT turi atitikmenį:
+            <br>select * from DT1  left join DT2 on DT1.id=DT2.id;
+            <br>RIGHT JOIN įves visus antros DT įrašus, nepriklausomai, ar pirma DT turi atitikmenį.
+            <br>FULL JOIN įves visus abiejų DT įrašus, nepriklausomai, ar yra atitikmenys, ar nėra.
+
+        </li> 
     </ul>
     <h3 id=DTrinkimas> Duomenų išrinkimas</h3>
     <ul>
@@ -211,7 +231,5 @@
             <br><small>Pastaba. Coalesce pakeis stulpelio pavadinimą. Jį galima perkeisti su AS operatoriumi.</small>
         </li>
     </ul>
-    
-
 </body>
 </html>

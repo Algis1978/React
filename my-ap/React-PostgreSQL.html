@@ -44,7 +44,6 @@ var x = 10;
     </script>
 </head>
 <body>
-    <p>BLAH</p>
     <h2>Turinys</h2>
     <ul>
         <li>
@@ -87,17 +86,28 @@ var x = 10;
         </li>
         <li>Po to įvedamas Node.js su komanda: npm init</li>
         <li>Po to instaliuojami reikiami moduliai su:
-            <br>npm install express sequelize pg pg-hstore body-parser cors nodemon --save
+            <br>npm install express, nodemon, cors, pg --save
         </li>
         <li>Serverio bylos "package.json" 'script' dalyje įvedama komanda "start": "nodemon server.js"</li>
         <li> Po to susikuriama atitinkama server.js byla ir joje suvedami moduliai:<br>
             const express = require('express')<br>
-            const mysql = require('mysql')<br>
-            const cors = require('cors')
+            const bodyParser = require('body-parser')<br>
+            const cors = require('cors')<br>
+            const uzklausos = require('./uzklausos')<br>
+            <small>kur 'uzklausos' bus parašytas užklausų modulis</small>
         </li>
         <li>Nurodoma naudoti express modulį ir portą:<br>
             const app = express()<br>
             const port = 3006<br>
+        </li>
+        <li>Aktyvuojamas cors, reikalingas užklausų priėmimui:<br>
+            app.use(cors());<br>
+        </li>
+        <li>Šios komandos reikalingos su POST metodu:<br>
+            app.use(express.urlencoded({<br>
+                extended: true<br>
+                }))<br>
+            app.use(express.json());
         </li>
         <li>Nurodoma serveriui atsiliepti  į užklausas per nurodytą portą:<br>
             app.listen(port, () => { <br>
@@ -109,43 +119,73 @@ var x = 10;
               res.send('Sveiki!')<br>
             })
         </li>
-        <li>Įvedami nustatymai sąsajai su duomenų baze (DB serveris tur būti paleistas):<br>
-            const sasaja = mysql.createConnection({ <br>
-                host: "localhost",<br>
-                user: "root",<br>
-                database: "prekiu_krepselis",<br>
-                password: "root" <br>
-              });
+        <li>Susikuriamas nauja byla uzklausos.js, kurioje formuojamos užklausos.</li>
+        <li>Byloje uzklausos.js Įvedami nustatymai sąsajai su duomenų baze (DB serveris tur būti paleistas):<br>
+            const Pool = require('pg').Pool
+            const pool = new Pool({<br>
+                user: '****',<br>
+                host: 'localhost',<br>
+                database: '****',<br>
+                password: '****',<br>
+                port: 5432<br>
+            })
         </li>
-        <li>Sukuriama sąsaja su DB:<br>
-            sasaja.connect(function(err) {<br>
-                if (err) throw err;<br>
-                console.log("Connected!");<br>
-              });
+        <li>CRUD užklausų paketas:<br>
+            const isvestiZmones = (request, response) => {<br>
+                pool.query('SELECT * FROM rest ORDER BY id ASC', (error, results) => {
+                  if (error) {throw error}<br>
+                  response.status(200).json(results.rows)<br>
+                })<br>
+              }<br>
+            const isvestiZmogu = (request, response) => {<br>
+                const id = parseInt(request.params.id)<br>
+                pool.query('SELECT * FROM rest WHERE id = $1', [id], (error, results) => {<br>
+                  if (error) {throw error}<br>
+                  response.status(200).json(results.rows)<br>
+                })<br>
+              }<br>
+            const sukurtiZmogu= (request, response) => {<br>
+                const { vardas, gimimo_data } = request.body<br>
+                pool.query('INSERT INTO rest (vardas, gimimo_data) VALUES ($1, $2)', [vardas, gimimo_data], (error, results) => {<br>
+                  if (error) {throw error}<br>
+                  response.status(201).send(`Įvestas naujas žmogus su id = ${results.insertId}`)<br>
+                })<br>
+              }<br>
+            const atnaujintiZmogu = (request, response) => {<br>
+                const id = parseInt(request.params.id)<br>
+                const { vardas, gimimo_data } = request.body<br>
+                pool.query(<br>
+                  'UPDATE rest SET vardas = $1, gimimo_data = $2 WHERE id = $3',
+                  [vardas, gimimo_data, id],<br>
+                  (error, results) => {<br>
+                    if (error) {throw error}<br>
+                    response.status(200).send(`Pakeisti žmogaus duomenis su id = ${id}`)<br>
+                  }<br>
+                )<br>
+            }<br>
+            const istrintiZmogu = (request, response) => {<br>
+                const id = parseInt(request.params.id)<br>     
+                pool.query('DELETE FROM rest WHERE id = $1', [id], (error, results) => {<br>
+                  if (error) {throw error}<br>
+                  response.status(200).send(`Ištrinti žmogaus duomenys su id = ${id}`)<br>
+                })<br>
+              }
         </li>
-        <li> Aktyvuojamas cors:<br>
-            app.use(cors());
+        <li>Pabaigoje eksportuojamos užklausų paketas:<br>
+            module.exports = {<br>
+                isvestiZmones,<br>
+                isvestiZmogu,<br>
+                sukurtiZmogu,<br>
+                atnaujintiZmogu,<br>
+                istrintiZmogu<br>
+              }
         </li>
-        <li>Ši komanda įgalina atpažinti siunčiamą informaciją kaip tekstą ar masyvą:<br>
-            app.use(express.urlencoded({<br>
-                extended: true<br>
-                }))
-        </li>
-        <li>Nurodo automatiškai perskaityti JSON informaciją:<br>
-            app.use(express.json());
-        </li>
-        <li>Patikrina JSON perskaitymo veikimą:<br>
-            app.get('/JSONtest', (req, res) => { <br>
-                res.send(JSON.stringify({JSONtest: 'Viskas OK'}))<br>
-              })
-        </li>
-        <li>Prisijungimas prie konkrečios DB lentelės:<br>
-            app.get('/prekes', (req, res) => {<br>
-                const sqlUzklausa = `select * from prekes`<br>
-                sasaja.query(sqlUzklausa, (err, results) =>{<br>
-                if (err) {console.log("Klaida");throw err}<br>
-                else {res.send(results)} <br>
-                }) })
+        <li>Po to server.js byloje importuojamos funkcijos:<br>
+            app.get('/zmones', uzklausos.isvestiZmones)<br>
+            app.get('/zmogus/:id', uzklausos.isvestiZmogu)<br>
+            app.post('/zmogus', uzklausos.sukurtiZmogu)<br>
+            app.put('/zmogus/:id', uzklausos.atnaujintiZmogu)<br>
+            app.delete('/zmogus/:id', uzklausos.istrintiZmogu)
         </li>
     </ol>
     <h2 id="react">React projekto parašymas</h2>
